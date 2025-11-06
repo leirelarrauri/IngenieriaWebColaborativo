@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <title>Listado de departamentos</title>
+    </head>
+    <body>
+        <div id="content">
+	     <h1>Gestor de Empleados</h1>
+         <h2>Listado de tracks</h2>
+         {% if lista_tracks %}
+             <ul>
+             {% for t in lista_tracks %}
+                 <li>
+                     <a href="/appScientificConference/tracks{t.id }">{{ t.nombre}}</a>
+                 </li>
+             {% endfor %}
+             </ul>
+         {% else %}
+         <p>No hay tracks creados.</p>
+         {% endif %}
+        </div>
+    </body>
+</html>

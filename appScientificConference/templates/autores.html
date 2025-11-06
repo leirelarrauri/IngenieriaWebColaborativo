@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>Autores del articulo</title>
+</head>
+
+<body>
+    <div id="content">
+        <h1>Gestor de autores</h1>
+        <h2>Lista de autores</h2>
+        <h3>{{ autor.nombre }}</h3>
+        {% if autores %}
+            <ul>
+                {% for a in autores %}
+                <li>
+                    <a href="/appScientificConference/{{ a.id }}">{{ a.nombre}}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No hay autores creados.</p>
+        {% endif %}
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>Detalles del autor</title>
+</head>
+
+<body>
+    <div id="content">
+        <h1>Gestor de Autores</h1>
+        <h2>Datos del autor</h2>
+
+        {% if autor %}
+            <ul>
+                <li>
+                    {{ autor.nombre}}
+                </li>
+                <li>
+                    {{ autor.afiliacion}}
+                </li>
+
+                <li>
+                    <a href="/appScientificConference/{{ autor.articulo.id }}">{{ autor.articulo}}</a>
+                </li>
+            </ul>
+        {% else %}
+            <p>No existe este autor.</p>
+        {% endif %}
+    </div>
+</body>
+
+</html>

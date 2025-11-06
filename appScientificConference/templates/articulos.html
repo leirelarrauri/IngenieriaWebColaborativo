@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de artículos</title>
+</head>
+<body>
+    <h1>Lista de artículos</h1>
+
+    {% if articulos %}
+        <ul>
+            {% for articulo in articulos %}
+                <li>
+                    <h3><a href="{% url 'detalle_articulo' articulo.id %}">{{ articulo.titulo }}</a></h3>
+                    <p>{{ articulo.abstract|truncatewords:20 }}</p>
+                    <p><strong>Track:</strong> {{ articulo.track.nombre }}</p>
+
+                    <p><strong>Autores:</strong>
+                        {% for autor in articulo.autores.all %}
+                            {{ autor.nombre }}{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    </p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No hay artículos registrados.</p>
+    {% endif %}
+</body>
+</html>

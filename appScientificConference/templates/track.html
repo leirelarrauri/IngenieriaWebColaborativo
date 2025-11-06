@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>Detalle del track</title>
+</head>
+
+<body>
+    <div id="content">
+        <h1>Gestor de Tracks</h1>
+        <h2>Datos del track</h2>
+        {% if track %}
+            <ul>
+                <li>
+                    {{ track.nombre}}
+                </li>
+                <li>
+                    {{ track}}
+                </li>
+                <li>
+                    <a href="/appScientificConference/ {{track.id }}/articulos">Ver articulos</a>
+                </li>
+            </ul>
+        {% else %}
+            <p>No existe este track.</p>
+        {% endif %}
+    </div>
+</body>
+
+</html>
