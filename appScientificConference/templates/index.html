@@ -1,24 +1,22 @@
-<!DOCTYPE html>
-<html lang="es">
-    <head>
-        <link rel="stylesheet" href="style.css">
-        <title>Listado de departamentos</title>
-    </head>
-    <body>
-        <div id="content">
-	     <h1>Gestor de Empleados</h1>
-         <h2>Listado de tracks</h2>
-         {% if lista_tracks %}
-             <ul>
-             {% for t in lista_tracks %}
-                 <li>
-                     <a href="/appScientificConference/tracks{t.id }">{{ t.nombre}}</a>
-                 </li>
-             {% endfor %}
-             </ul>
-         {% else %}
-         <p>No hay tracks creados.</p>
-         {% endif %}
-        </div>
-    </body>
-</html>
+{% extends "base.html" %}
+{% block titulo %}<title>Listado de departamentos</title>{% endblock %}
+  
+{% block contenido %}
+
+{% for item in tracks_con_articulo %}
+    <h2>{{ item.track.nombre }}</h2>
+    <p>{{ item.track.descripcion }}</p>
+    {% if item.articulo_destacado %}
+    <div class="articulo-destacado">
+        <h3>Artículo destacado:</h3>
+        <h4>{{ item.articulo_destacado.titulo }}</h4>
+        <p>{{ item.articulo_destacado.abstract|truncatewords:30 }}</p>
+        <a href="{% url 'show_articulo' item.articulo_destacado.id %}">Ver más</a>
+    </div>
+    {% else %}
+    <p>No hay artículos en este track.</p>
+    {% endif %}
+</div>
+<hr>
+{% endfor %}
+{% endblock %}
