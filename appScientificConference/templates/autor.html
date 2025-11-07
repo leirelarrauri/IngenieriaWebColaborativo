@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}{{ autor.nombre }}{% endblock %}
 
 {% block content %}
@@ -6,7 +7,7 @@
 {% if autor.afiliacion %}
     <p>Afiliación:{{ autor.afiliacion }}</p>
 {% endif %}
-
+    <img src="{% static 'img/' %}{{ autor.nombre|slugify }}.jpg" alt="{{ autor.nombre }}" style="max-width: 200px; height: auto;" />
 <h3>Artículos de este autor:</h3>
 {% if articulos %}
     <ul>
