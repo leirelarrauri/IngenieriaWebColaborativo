@@ -4,8 +4,8 @@
 {% block content %}
 <h2>{{ articulo.titulo }}</h2>
 
-<p><strong>Resumen:</strong> {{ articulo.abstract }}</p>
-<p><strong>Track:</strong> 
+<p>Resumen:{{ articulo.abstract }}</p>
+<p>Track:
     <a href="{% url 'show_track' articulo.track.id %}">{{ articulo.track.nombre }}</a>
 </p>
 
