@@ -42,7 +42,7 @@ def lista_autores(request):
 
 # Devuelve el listado de articulos 
 def lista_articulos(request):
-    articulos = get_list_or_404(Articulo.objects.order_by('nombre'))
+    articulos = get_list_or_404(Articulo.objects.order_by('titulo'))
     return render(request, 'articulos.html', {
         'lista_articulos': articulos
     })
