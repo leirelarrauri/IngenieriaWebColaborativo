@@ -1,0 +1,54 @@
+[
+  {
+    "model": "appScientificConference.track",
+    "pk": 1,
+    "fields": {
+      "nombre": "Inteligencia Artificial",
+      "descripcion": "Modelos y algoritmos de vanguardia"
+    }
+  },
+  {
+    "model": "appScientificConference.track",
+    "pk": 2,
+    "fields": {
+      "nombre": "Biotecnología",
+      "descripcion": "Innovaciones genéticas y celulares"
+    }
+  },
+  {
+    "model": "appScientificConference.autor",
+    "pk": 1,
+    "fields": {
+      "nombre": "Dra. Ana Ruiz",
+      "afiliacion": "Universidad de Madrid"
+    }
+  },
+  {
+    "model": "appScientificConference.autor",
+    "pk": 2,
+    "fields": {
+      "nombre": "Dr. Luis Gómez",
+      "afiliacion": "MIT"
+    }
+  },
+  {
+    "model": "appScientificConference.articulo",
+    "pk": 1,
+    "fields": {
+      "titulo": "Transformers Cuánticos",
+      "abstract": "Exploración de arquitecturas híbridas para cómputo cuántico asistido por aprendizaje profundo.",
+      "track": 1,
+      "autor": 1
+    }
+  },
+  {
+    "model": "appScientificConference.articulo",
+    "pk": 2,
+    "fields": {
+      "titulo": "Proteínas diseñadas con IA",
+      "abstract": "Uso de modelos generativos para descubrir nuevas estructuras proteicas funcionales.",
+      "track": 2,
+      "autor": 2
+    }
+  }
+]

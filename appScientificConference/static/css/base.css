@@ -1,0 +1,221 @@
+/* Electric blue background, larger titles, and card-like blocks in main */
+
+:root {
+  --electric-blue: #001335;
+  --panel-bg: #ffffff;
+  --panel-border: rgba(0, 0, 0, 0.12);
+  --text-dark: #0a0a0a;
+  --text-light: #f5f7ff;
+  --radius: 12px;
+  --shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text-light);
+  background-color: #000a1a;                 /* solid fill for remaining area */
+  background-image: url('../img/background.png');
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: 70% auto;                 /* image scales to 70% width */
+  background-attachment: fixed;
+}
+
+/* Header/Footer as rectangles (panels) */
+header, footer {
+  background: var(--panel-bg);
+  color: var(--text-dark);
+  padding: 16px 20px;
+  border-radius: var(--radius);
+  border: 1px solid var(--panel-border);
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+/* Bigger title and subtitle */
+header h1 {
+  margin: 0 0 6px 0;
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  line-height: 1.1;
+}
+
+header h2 {
+  margin: 0 0 12px 0;
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  font-weight: 500;
+  color: #333;
+}
+
+/* Nav */
+nav ul { list-style: none; padding: 0; margin: 0; }
+nav li { display: inline-block; margin: 0 10px; }
+nav a {
+  color: var(--text-dark);
+  text-decoration: none;
+  font-weight: 600;
+}
+nav a:hover { text-decoration: underline; }
+
+/* Main content: each direct child becomes a rectangle (card) */
+main {
+  margin-top: 20px;
+}
+
+main > section,
+main > article,
+main > div,
+main > ul,
+main > form {
+  background: var(--panel-bg);
+  color: var(--text-dark);
+  padding: 16px 20px;
+  margin: 16px 0;
+  border-radius: var(--radius);
+  border: 1px solid var(--panel-border);
+  box-shadow: var(--shadow);
+}
+
+/* Links inside panels */
+main a {
+  color: #031737;
+  text-decoration: none;
+}
+main a:hover {
+  text-decoration: underline;
+}
+
+.hero-divider {
+  border: 0;
+  height: 2px;
+  background: #fff;
+  opacity: 0.9;
+  width: min(960px, 92%);
+  margin: 80px auto 32px; /* increased space above the divider */
+}
+
+/* Hero without panel look, centered and constrained */
+.hero {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+  max-width: min(960px, 92%);
+  margin: 0 auto 24px;
+  text-align: center;
+  color: #fff;
+}
+
+/* Bigger, white hero title and readable paragraph */
+.hero-title {
+  margin: 0 0 10px 0;
+  font-size: clamp(2.4rem, 6.5vw, 3.5rem);
+  line-height: 1.15;
+  color: #fff;
+}
+
+.hero-text {
+  margin: 0.5rem auto 0;
+  max-width: 70ch;
+  font-size: clamp(1.05rem, 2.4vw, 1.2rem);
+  color: rgba(255,255,255,0.92);
+}
+
+/* Simple link buttons for index actions (inside panels) */
+.index-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn-link {
+  display: inline-block;
+  padding: 10px 14px;
+  border-radius: var(--radius);
+  border: 1px solid var(--panel-border);
+  background: #f5f7ff;
+  color: #031737;
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: var(--shadow);
+}
+
+.btn-link:hover {
+  text-decoration: underline;
+}
+
+.site-header {
+  background: transparent;
+  color: #fff;
+  padding: 24px 0 8px;
+  border: 0;
+  box-shadow: none;
+  text-align: center;
+  margin-bottom: 12px; /* optional extra space below header */
+}
+
+/* Bigger, white title/subtitle */
+.site-header h1 {
+  margin: 0 0 6px 0;
+  font-size: clamp(4rem, 12vw, 4rem);
+  line-height: 1.1;
+  color: #fff;
+}
+.site-header h2 {
+  margin: 0 0 14px 0;
+  font-size: clamp(1.3rem, 4vw, 2rem);
+  font-weight: 500;
+  color: rgba(255,255,255,0.92);
+}
+
+/* Nav as small rectangles (chips); text same color as background */
+.main-nav {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  /* hide old "|" separators if present */
+  font-size: 0;
+}
+.main-nav a {
+  font-size: 0.95rem;         /* restore font size for links */
+  display: inline-block;
+  padding: 8px 12px;
+  background: #fff;
+  color: var(--electric-blue);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 700;
+  box-shadow: var(--shadow);
+}
+.main-nav a:hover {
+  text-decoration: none;
+  filter: brightness(0.97);
+}
+
+/* Keep footer as panel; remove header from the old panel rule */
+footer {
+  background: var(--panel-bg);
+  color: var(--text-dark);
+  padding: 16px 20px;
+  border-radius: var(--radius);
+  border: 1px solid var(--panel-border);
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+/* (Optional) remove old nav list styling conflicts */
+nav ul { list-style: none; padding: 0; margin: 0; }
+nav li { display: inline-block; margin: 0 10px; }

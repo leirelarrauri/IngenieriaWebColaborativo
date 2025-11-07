@@ -2,7 +2,6 @@ from django.shortcuts import get_object_or_404, get_list_or_404
 from django.shortcuts import render
 from .models import Articulo, Autor, Track
 
-
 #Devuelve la pagina principal
 def index(request):
     tracks = Track.objects.all()

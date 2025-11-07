@@ -1,10 +1,20 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Inicio - Scientific Conference{% endblock %}
 
 {% block content %}
-<h1>Scientific Conference</h1>
-<p>Explora los artículos destacados por cada tema principal.</p>
+<hr class="hero-divider">
+
+<section class="hero">
+  <h1 class="hero-title">Bienvenido a la conferencia científica del siglo.</h1>
+  <p class="hero-text">
+    NexusEXPO reúne a líderes, investigadores y visionarios de todo el mundo para compartir
+    descubrimientos, debatir ideas transformadoras y construir colaboraciones que definan el futuro.
+    Explora tracks temáticos, conoce a los autores y descubre artículos que marcan un antes y un después
+    en la ciencia global.
+  </p>
+</section>
 
 {% for item in tracks_con_articulo %}
     <div class="track">
