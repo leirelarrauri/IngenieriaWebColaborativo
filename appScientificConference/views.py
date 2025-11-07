@@ -1,4 +1,3 @@
-from django.http import HttpResponse, Http404
 from django.shortcuts import get_object_or_404, get_list_or_404
 from django.shortcuts import render
 from .models import Articulo, Autor, Track
@@ -6,25 +5,20 @@ from .models import Articulo, Autor, Track
 
 #Devuelve la pagina principal
 def index(request):
-    # Obtener todos los tracks ordenados
-    tracks = Track.objects.all().order_by('nombre')
-    
-    # Crear una lista de tuplas (track, articulo_destacado)
+    tracks = Track.objects.all()
     tracks_con_articulo = []
-    
+
     for track in tracks:
-        # Eliges el primer articulo ordenado por titulo
-        articulo_destacado = track.articulos.order_by('titulo').first()
-        
+        # Obtiene el primer artículo (puedes cambiar el criterio)
+        articulo_destacado = Articulo.objects.filter(track=track).order_by('titulo').first()
         tracks_con_articulo.append({
             'track': track,
             'articulo_destacado': articulo_destacado
         })
-    
-    context = {
+
+    return render(request, 'index.html', {
         'tracks_con_articulo': tracks_con_articulo
-    }
-    return render(request, 'index.html', context)
+    })
 
 # Devuelve el listado de tracks 
 def lista_tracks(request):
