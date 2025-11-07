@@ -1,27 +1,19 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Lista de Tracks</title>
-</head>
-<body>
-    <h1>Temas principales (Tracks)</h1>
+{% extends 'base.html' %}
+{% block title %}Lista de tracks{% endblock %}
 
-    {% if tracks %}
-        <ul>
-            {% for track in tracks %}
-                <li>
-                    <h3>
-                        <a href="{% url 'show_track' track.id %}">{{ track.nombre }}</a>
-                    </h3>
-                    <p>{{ track.descripcion|truncatewords:25 }}</p>
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No hay temas principales registrados.</p>
-    {% endif %}
+{% block content %}
+<h2>Temas principales (Tracks)</h2>
 
-    <p><a href="/">← Volver al inicio</a></p>
-</body>
-</html>
+{% if tracks %}
+    <ul>
+        {% for track in tracks %}
+            <li>
+                <h3><a href="{% url 'detalle_track' track.id %}">{{ track.nombre }}</a></h3>
+                <p>{{ track.descripcion|truncatewords:25 }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No hay temas principales registrados.</p>
+{% endif %}
+{% endblock %}

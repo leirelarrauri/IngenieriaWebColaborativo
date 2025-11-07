@@ -1,28 +1,25 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ articulo.titulo }}</title>
-</head>
-<body>
-    <h1>{{ articulo.titulo }}</h1>
-    <p><strong>Resumen:</strong> {{ articulo.abstract }}</p>
-    <p><strong>Track:</strong> 
-        <a href="{% url 'show_track' articulo.track.id %}">{{ articulo.track.nombre }}</a>
-    </p>
+{% extends 'base.html' %}
+{% block title %}{{ articulo.titulo }}{% endblock %}
 
-    <h3>Autores:</h3>
-    {% if articulo.autores.all %}
-        <ul>
-            {% for autor in articulo.autores.all %}
-                <li>
-                    <a href="{% url 'show_autor' autor.id %}">{{ autor.nombre }}</a>
-                    {% if autor.afiliacion %} ({{ autor.afiliacion }}){% endif %}
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No hay autores asociados.</p>
-    {% endif %}
-</body>
-</html>
+{% block content %}
+<h2>{{ articulo.titulo }}</h2>
+
+<p><strong>Resumen:</strong> {{ articulo.abstract }}</p>
+<p><strong>Track:</strong> 
+    <a href="{% url 'detalle_track' articulo.track.id %}">{{ articulo.track.nombre }}</a>
+</p>
+
+<h3>Autores:</h3>
+{% if articulo.autores.all %}
+    <ul>
+        {% for autor in articulo.autores.all %}
+            <li>
+                <a href="{% url 'detalle_autor' autor.id %}">{{ autor.nombre }}</a>
+                {% if autor.afiliacion %} ({{ autor.afiliacion }}){% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No hay autores asociados.</p>
+{% endif %}
+{% endblock %}

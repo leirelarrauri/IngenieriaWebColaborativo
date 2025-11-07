@@ -1,13 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <link rel="stylesheet" href="style.css">
-        <title>{% block titulo %}Gestor de Articulos{% endblock %}</title>
-    </head>
-    <body>
-        <div id="content">
-	     <h1>Gestor de Empleados</h1>
-            {% block contenido %}{% endblock %}
-        </div>
-    </body>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Scientific Conference{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+
+<body>
+    <header>
+        <h1><a href="/">Scientific Conference</a></h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'lista_articulos' %}">Artículos</a></li>
+                <li><a href="{% url 'lista_tracks' %}">Tracks</a></li>
+                <li><a href="{% url 'lista_autores' %}">Autores</a></li>
+            </ul>
+        </nav>
+        <hr>
+    </header>
+
+    <main>
+        {% block content %}
+        <!-- Aquí irá el contenido específico de cada página -->
+        {% endblock %}
+    </main>
+
+    <footer>
+        <hr>
+        <p>&copy; 2025 Scientific Conference — Proyecto Ingeniería Web</p>
+    </footer>
+</body>
 </html>

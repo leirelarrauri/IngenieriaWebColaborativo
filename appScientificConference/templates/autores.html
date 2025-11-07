@@ -1,28 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
+{% block title %}Lista de autores{% endblock %}
 
-<head>
-    <link rel="stylesheet" href="style.css">
-    <title>Autores del articulo</title>
-</head>
+{% block content %}
+<h2>Autores y autoras</h2>
 
-<body>
-    <div id="content">
-        <h1>Gestor de autores</h1>
-        <h2>Lista de autores</h2>
-        <h3>{{ autor.nombre }}</h3>
-        {% if autores %}
-            <ul>
-                {% for a in autores %}
-                <li>
-                    <a href="/appScientificConference/{{ a.id }}">{{ a.nombre}}</a>
-                </li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p>No hay autores creados.</p>
-        {% endif %}
-    </div>
-</body>
-
-</html>
+{% if autores %}
+    <ul>
+        {% for autor in autores %}
+            <li>
+                <a href="{% url 'detalle_autor' autor.id %}">{{ autor.nombre }}</a>
+                {% if autor.afiliacion %} — {{ autor.afiliacion }}{% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No hay autores registrados.</p>
+{% endif %}
+{% endblock %}

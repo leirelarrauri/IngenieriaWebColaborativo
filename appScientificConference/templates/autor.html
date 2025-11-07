@@ -1,33 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
+{% block title %}{{ autor.nombre }}{% endblock %}
 
-<head>
-    <link rel="stylesheet" href="style.css">
-    <title>Detalles del autor</title>
-</head>
+{% block content %}
+<h2>{{ autor.nombre }}</h2>
+{% if autor.afiliacion %}
+    <p><strong>Afiliación:</strong> {{ autor.afiliacion }}</p>
+{% endif %}
 
-<body>
-    <div id="content">
-        <h1>Gestor de Autores</h1>
-        <h2>Datos del autor</h2>
-
-        {% if autor %}
-            <ul>
-                <li>
-                    {{ autor.nombre}}
-                </li>
-                <li>
-                    {{ autor.afiliacion}}
-                </li>
-
-                <li>
-                    <a href="/appScientificConference/{{ autor.articulo.id }}">{{ autor.articulo}}</a>
-                </li>
-            </ul>
-        {% else %}
-            <p>No existe este autor.</p>
-        {% endif %}
-    </div>
-</body>
-
-</html>
+<h3>Artículos de este autor:</h3>
+{% if articulos %}
+    <ul>
+        {% for articulo in articulos %}
+            <li>
+                <a href="{% url 'detalle_articulo' articulo.id %}">{{ articulo.titulo }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Este autor no tiene artículos asociados.</p>
+{% endif %}
+{% endblock %}
