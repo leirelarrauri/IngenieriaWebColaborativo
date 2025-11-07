@@ -8,12 +8,12 @@
     <ul>
         {% for articulo in articulos %}
             <li>
-                <h3><a href="{% url 'detalle_articulo' articulo.id %}">{{ articulo.titulo }}</a></h3>
+                <h3><a href="{% url 'show_articulo' articulo.id %}">{{ articulo.titulo }}</a></h3>
                 <p>{{ articulo.abstract|truncatewords:20 }}</p>
                 <p><strong>Track:</strong> {{ articulo.track.nombre }}</p>
                 <p><strong>Autores:</strong>
                     {% for autor in articulo.autores.all %}
-                        <a href="{% url 'detalle_autor' autor.id %}">{{ autor.nombre }}</a>{% if not forloop.last %}, {% endif %}
+                        <a href="{% url 'show_autor' autor.id %}">{{ autor.nombre }}</a>{% if not forloop.last %}, {% endif %}
                     {% endfor %}
                 </p>
             </li>

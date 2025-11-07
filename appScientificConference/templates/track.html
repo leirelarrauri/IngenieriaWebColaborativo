@@ -10,7 +10,7 @@
     <ul>
         {% for articulo in articulos %}
             <li>
-                <h4><a href="{% url 'detalle_articulo' articulo.id %}">{{ articulo.titulo }}</a></h4>
+                <h4><a href="{% url 'show_articulo' articulo.id %}">{{ articulo.titulo }}</a></h4>
                 <p>{{ articulo.abstract|truncatewords:20 }}</p>
             </li>
         {% endfor %}

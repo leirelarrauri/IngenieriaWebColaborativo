@@ -30,21 +30,21 @@ def index(request):
 def lista_tracks(request):
     tracks = get_list_or_404(Track.objects.order_by('nombre'))
     return render(request, 'tracks.html', {
-        'lista_tracks': tracks
+        'tracks': tracks
     })
 
 # Devuelve el listado de autores 
 def lista_autores(request):
     autores = get_list_or_404(Autor.objects.order_by('nombre'))
     return render(request, 'autores.html', {
-        'lista_autores': autores
+        'autores': autores
     })
 
 # Devuelve el listado de articulos 
 def lista_articulos(request):
     articulos = get_list_or_404(Articulo.objects.order_by('titulo'))
     return render(request, 'articulos.html', {
-        'lista_articulos': articulos
+        'articulos': articulos
     })
 
 # Devuelve los detalles de un track 
@@ -68,7 +68,7 @@ def show_autor(request, autor_id):
 def show_articulo(request, articulo_id):
     articulo = get_object_or_404(Articulo, pk=articulo_id)
     track = get_object_or_404(Track, pk=articulo.track.id)
-    autores = get_list_or_404(articulo.autores.all().order_by('titulo'))    
+    autores = get_list_or_404(articulo.autores.all().order_by('nombre'))    
     return render(request, 'articulo.html', {
         'articulo': articulo,
         'track': track,

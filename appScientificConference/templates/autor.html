@@ -12,7 +12,7 @@
     <ul>
         {% for articulo in articulos %}
             <li>
-                <a href="{% url 'detalle_articulo' articulo.id %}">{{ articulo.titulo }}</a>
+                <a href="{% url 'show_articulo' articulo.id %}">{{ articulo.titulo }}</a>
             </li>
         {% endfor %}
     </ul>

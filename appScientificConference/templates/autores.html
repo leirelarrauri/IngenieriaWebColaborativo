@@ -8,7 +8,7 @@
     <ul>
         {% for autor in autores %}
             <li>
-                <a href="{% url 'detalle_autor' autor.id %}">{{ autor.nombre }}</a>
+                <a href="{% url 'show_autor' autor.id %}">{{ autor.nombre }}</a>
                 {% if autor.afiliacion %} — {{ autor.afiliacion }}{% endif %}
             </li>
         {% endfor %}

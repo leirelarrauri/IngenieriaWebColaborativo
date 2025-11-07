@@ -6,7 +6,7 @@
 
 <p><strong>Resumen:</strong> {{ articulo.abstract }}</p>
 <p><strong>Track:</strong> 
-    <a href="{% url 'detalle_track' articulo.track.id %}">{{ articulo.track.nombre }}</a>
+    <a href="{% url 'show_track' articulo.track.id %}">{{ articulo.track.nombre }}</a>
 </p>
 
 <h3>Autores:</h3>
@@ -14,7 +14,7 @@
     <ul>
         {% for autor in articulo.autores.all %}
             <li>
-                <a href="{% url 'detalle_autor' autor.id %}">{{ autor.nombre }}</a>
+                <a href="{% url 'show_autor' autor.id %}">{{ autor.nombre }}</a>
                 {% if autor.afiliacion %} ({{ autor.afiliacion }}){% endif %}
             </li>
         {% endfor %}
