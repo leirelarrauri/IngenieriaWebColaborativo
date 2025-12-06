@@ -11,6 +11,7 @@ class Track(models.Model):
 class Autor(models.Model):
     nombre = models.CharField(max_length=100)
     afiliacion = models.CharField(max_length=200, blank=True)
+    imagen = models.ImageField(upload_to='img',blank=True,null=True,verbose_name='Image')
 
     def __str__(self):
         return self.nombre
