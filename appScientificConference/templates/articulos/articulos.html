@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Lista de artículos{% endblock %}
+
+{% block content %}
+<div class="contenedor-lista">
+    <h1 class="titulo-lista">Lista de artículos</h1>
+    
+    <div class="contenedor-botones-principal">
+        <a href="{% url 'crear_articulo' %}" class="boton-principal">
+            ＋ Crear Nuevo Artículo
+        </a>
+    </div>
+    
+    {% if articulos %}
+        <div class="lista-articulos">
+            {% for articulo in articulos %}
+            <div class="tarjeta-articulo">
+                <div class="cabecera-tarjeta">
+                    <h2 class="titulo-articulo">
+                        <a href="{% url 'show_articulo' articulo.id %}" class="enlace-titulo">
+                            {{ articulo.titulo }}
+                        </a>
+                    </h2>
+                    <a href="{% url 'editar_articulo' articulo.id %}" class="boton-editar-cabecera">
+                        ✏️ Editar
+                    </a>
+                </div>
+                
+                <div class="contenido-tarjeta">
+                    <p class="abstract-articulo">{{ articulo.abstract|truncatewords:30|safe }}</p>
+                    
+                    <div class="informacion-articulo">
+                        <p class="info-linea">
+                            <span class="etiqueta-info">Track:</span>
+                            <a href="{% url 'show_track' articulo.track.id %}" class="enlace-info">
+                                {{ articulo.track.nombre }}
+                            </a>
+                        </p>
+                        <p class="info-linea">
+                            <span class="etiqueta-info">Autores:</span>
+                            {% for autor in articulo.autores.all %}
+                                <a href="{% url 'show_autor' autor.id %}" class="enlace-info">
+                                    {{ autor.nombre }}
+                                </a>{% if not forloop.last %}<span class="separador-autores">, </span>{% endif %}
+                            {% endfor %}
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="pie-tarjeta">
+                    <a href="{% url 'editar_articulo' articulo.id %}" class="boton-accion boton-editar">Editar</a>
+                    <a href="{% url 'show_articulo' articulo.id %}" class="boton-accion boton-detalles">Ver Detalles</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="contenedor-vacio">
+            <div class="mensaje-vacio">
+                <h3 class="titulo-vacio">No hay artículos registrados</h3>
+                <p class="texto-vacio">¡Sé el primero en crear un artículo!</p>
+                <a href="{% url 'crear_articulo' %}" class="boton-principal boton-grande">
+                    ＋ Crear el Primer Artículo
+                </a>
+            </div>
+        </div>
+    {% endif %}
+    
+    <div class="contenedor-botones-principal contenedor-botones-inferior">
+        <a href="{% url 'crear_articulo' %}" class="boton-principal">
+            ＋ Crear Nuevo Artículo
+        </a>
+    </div>
+</div>
+{% endblock %}

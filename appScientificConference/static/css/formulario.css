@@ -1,0 +1,631 @@
+/* Estilos para el formulario de artículo */
+
+/* Contenedor principal */
+.contenedor-formulario {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e8eef1;
+}
+
+/* Título principal */
+.contenedor-formulario h1 {
+    color: #2c3e50;
+    font-size: 28px;
+    margin-bottom: 10px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #4a6fa5;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Texto de campos obligatorios */
+.texto-obligatorio {
+    color: #7f8c8d;
+    font-size: 14px;
+    margin-bottom: 30px;
+    font-style: italic;
+}
+
+.asterisco {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+/* Grupos de formulario */
+.grupo-formulario {
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.etiqueta-formulario {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #34495e;
+    font-size: 15px;
+}
+
+/* Campos de entrada */
+input[type="text"],
+input[type="password"],
+textarea,
+select {
+    width: 100%;
+    padding: 14px;
+    border: 2px solid #dce4e6;
+    border-radius: 6px;
+    font-size: 16px;
+    font-family: inherit;
+    background-color: #f9fbfc;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: #4a6fa5;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(74, 111, 165, 0.1);
+}
+
+/* Área de texto específica */
+textarea {
+    min-height: 200px;
+    resize: vertical;
+    line-height: 1.6;
+    font-family: 'Courier New', Consolas, monospace;
+}
+
+/* Select múltiple */
+select[multiple] {
+    height: 200px;
+    padding: 10px;
+}
+
+.texto-ayuda {
+    color: #7f8c8d;
+    font-size: 13px;
+    margin-top: 6px;
+    font-style: italic;
+}
+
+/* Barra de herramientas XHTML */
+.barra-herramientas {
+    background: linear-gradient(135deg, #6a89cc 0%, #4a69bd 100%);
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin-bottom: 12px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.boton-herramienta {
+    background: rgba(255, 255, 255, 0.9);
+    color: #2c3e50;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+}
+
+.boton-herramienta:hover {
+    background: #ffffff;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.icono-herramienta {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* Checkbox de términos */
+.grupo-terminos {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid #3498db;
+}
+
+.contenedor-checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-top: 4px;
+    accent-color: #3498db;
+}
+
+.etiqueta-terminos {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #2c3e50;
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Mensajes de error */
+.mensaje-error {
+    color: #e74c3c;
+    background-color: #fff5f5;
+    padding: 10px 14px;
+    border-radius: 4px;
+    margin-top: 8px;
+    border-left: 3px solid #e74c3c;
+    font-size: 14px;
+}
+
+.mensaje-error p {
+    margin: 5px 0;
+}
+
+.mensaje-error-js {
+    color: #e74c3c;
+    font-size: 13px;
+    margin-top: 5px;
+    padding-left: 5px;
+}
+
+.errores-generales {
+    background-color: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #dc2626;
+    padding: 16px;
+    border-radius: 6px;
+    margin-bottom: 25px;
+    font-size: 14px;
+}
+
+/* Vista previa */
+.contenedor-preview {
+    background-color: #f8f9fa;
+    border: 1px solid #e8eef1;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    display: none;
+}
+
+.titulo-preview {
+    color: #2c3e50;
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #dce4e6;
+}
+
+.contenido-preview {
+    padding: 15px;
+    background-color: #ffffff;
+    border-radius: 6px;
+    min-height: 100px;
+    font-family: 'Courier New', Consolas, monospace;
+    line-height: 1.6;
+    border: 1px solid #e8eef1;
+}
+
+/* Botones */
+.contenedor-botones {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+    padding-top: 25px;
+    border-top: 1px solid #e8eef1;
+    justify-content: center;
+}
+
+.boton {
+    padding: 14px 28px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    min-width: 160px;
+}
+
+.boton-enviar {
+    background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+    color: white;
+}
+
+.boton-enviar:hover {
+    background: linear-gradient(135deg, #219653 0%, #27ae60 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(39, 174, 96, 0.2);
+}
+
+.boton-validar {
+    background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+    color: white;
+}
+
+.boton-validar:hover {
+    background: linear-gradient(135deg, #2980b9 0%, #2573a7 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
+}
+
+.boton-preview {
+    background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
+    color: white;
+}
+
+.boton-preview:hover {
+    background: linear-gradient(135deg, #8e44ad 0%, #7d3c98 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(155, 89, 182, 0.2);
+}
+
+.boton-cancelar {
+    background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
+    color: white;
+}
+
+.boton-cancelar:hover {
+    background: linear-gradient(135deg, #7f8c8d 0%, #707b7c 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(149, 165, 166, 0.2);
+}
+
+/* Estados deshabilitados */
+.boton:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .contenedor-formulario {
+        margin: 20px;
+        padding: 25px;
+    }
+    
+    .contenedor-botones {
+        flex-direction: column;
+    }
+    
+    .boton {
+        width: 100%;
+    }
+    
+    .barra-herramientas {
+        flex-direction: column;
+    }
+    
+    .boton-herramienta {
+        justify-content: center;
+    }
+}
+
+
+/* ============================================
+   ESTILOS PARA LISTA DE ARTÍCULOS
+   ============================================ */
+
+/* Contenedor principal */
+.contenedor-lista {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+/* Título principal */
+.titulo-lista {
+    color: #2c3e50;
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 3px solid #4a6fa5;
+}
+
+/* Contenedor de botones principal */
+.contenedor-botones-principal {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.contenedor-botones-inferior {
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 1px solid #e8eef1;
+}
+
+/* Botón principal */
+.boton-principal {
+    display: inline-block;
+    background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+    color: white;
+    padding: 14px 28px;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(39, 174, 96, 0.2);
+}
+
+.boton-principal:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(39, 174, 96, 0.3);
+    color: white;
+}
+
+.boton-grande {
+    padding: 18px 40px;
+    font-size: 18px;
+}
+
+/* Lista de artículos */
+.lista-articulos {
+    display: grid;
+    gap: 25px;
+    margin-top: 20px;
+}
+
+/* Tarjeta de artículo individual */
+.tarjeta-articulo {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e8eef1;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tarjeta-articulo:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* Cabecera de la tarjeta */
+.cabecera-tarjeta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 30px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-bottom: 1px solid #dee2e6;
+}
+
+.titulo-articulo {
+    margin: 0;
+    font-size: 22px;
+    color: #2c3e50;
+    flex-grow: 1;
+}
+
+.enlace-titulo {
+    color: #2c3e50;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.enlace-titulo:hover {
+    color: #3498db;
+    text-decoration: underline;
+}
+
+.boton-editar-cabecera {
+    background: linear-gradient(135deg, #ffc107 0%, #ffb300 100%);
+    color: #212529;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: 20px;
+}
+
+.boton-editar-cabecera:hover {
+    background: linear-gradient(135deg, #ffb300 0%, #ffa000 100%);
+    color: #212529;
+    text-decoration: none;
+}
+
+/* Contenido de la tarjeta */
+.contenido-tarjeta {
+    padding: 25px 30px;
+}
+
+.abstract-articulo {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+
+.informacion-articulo {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 6px;
+    border-left: 4px solid #3498db;
+}
+
+.info-linea {
+    margin: 8px 0;
+    color: #666;
+}
+
+.etiqueta-info {
+    font-weight: 600;
+    color: #495057;
+    margin-right: 10px;
+}
+
+.enlace-info {
+    color: #6c757d;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.enlace-info:hover {
+    color: #3498db;
+    text-decoration: underline;
+}
+
+.separador-autores {
+    color: #adb5bd;
+}
+
+/* Pie de la tarjeta */
+.pie-tarjeta {
+    padding: 20px 30px;
+    background: #f8f9fa;
+    border-top: 1px solid #e8eef1;
+    display: flex;
+    gap: 15px;
+}
+
+.boton-accion {
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.boton-editar {
+    background: linear-gradient(135deg, #ffc107 0%, #ffb300 100%);
+    color: #212529;
+}
+
+.boton-editar:hover {
+    background: linear-gradient(135deg, #ffb300 0%, #ffa000 100%);
+    color: #212529;
+    text-decoration: none;
+}
+
+.boton-detalles {
+    background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+    color: white;
+}
+
+.boton-detalles:hover {
+    background: linear-gradient(135deg, #2980b9 0%, #2573a7 100%);
+    color: white;
+    text-decoration: none;
+}
+
+/* Contenedor vacío */
+.contenedor-vacio {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 10px;
+    margin: 40px 0;
+    border: 2px dashed #dee2e6;
+}
+
+.mensaje-vacio {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.titulo-vacio {
+    color: #6c757d;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.texto-vacio {
+    color: #6c757d;
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .contenedor-lista {
+        padding: 20px 15px;
+    }
+    
+    .titulo-lista {
+        font-size: 26px;
+    }
+    
+    .cabecera-tarjeta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+        padding: 20px;
+    }
+    
+    .boton-editar-cabecera {
+        align-self: flex-end;
+        margin-left: 0;
+    }
+    
+    .contenido-tarjeta {
+        padding: 20px;
+    }
+    
+    .pie-tarjeta {
+        flex-direction: column;
+        padding: 20px;
+    }
+    
+    .boton-accion {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .lista-articulos {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .titulo-lista {
+        font-size: 22px;
+    }
+    
+    .boton-principal {
+        padding: 12px 24px;
+        font-size: 15px;
+    }
+    
+    .boton-grande {
+        padding: 15px 30px;
+        font-size: 16px;
+    }
+}

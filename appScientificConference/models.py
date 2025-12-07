@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms import ModelForm
 
 class Track(models.Model):
     nombre = models.CharField(max_length=100)
@@ -25,3 +26,11 @@ class Articulo(models.Model):
 
     def __str__(self):
         return self.titulo
+    
+#Formulario para Articulo
+class ArticuloForm(ModelForm):
+    class Meta:
+        model = Articulo
+        fields = '__all__'
+
+    

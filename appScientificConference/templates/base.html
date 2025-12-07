@@ -1,10 +1,14 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Scientific Conference{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/formulario.css' %}">
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'js/validar.js' %}"></script>
 </head>
 <body>
     <header class="site-header">
