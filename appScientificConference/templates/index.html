@@ -1,26 +1,23 @@
 {% extends "base.html" %}
-{% load static %}
+{% load static i18n %}
 
-{% block title %}Inicio - Scientific Conference{% endblock %}
+{% block title %}{% trans "Inicio - Scientific Conference" %}{% endblock %}
 
 {% block content %}
 
 <section class="hero">
-  <h1 class="hero-title">Bienvenido a la conferencia científica del siglo.</h1>
+  <h1 class="hero-title">{% trans "Bienvenido a la conferencia científica del siglo." %}</h1>
   <p class="hero-text">
-    NexusEXPO reúne a líderes, investigadores y visionarios de todo el mundo para compartir
-    descubrimientos, debatir ideas transformadoras y construir colaboraciones que definan el futuro.
-    Explora tracks temáticos, conoce a los autores y descubre artículos que marcan un antes y un después
-    en la ciencia global.
+    {% trans "NexusEXPO reúne a líderes, investigadores y visionarios de todo el mundo para compartir descubrimientos, debatir ideas transformadoras y construir colaboraciones que definan el futuro. Explora tracks temáticos, conoce a los autores y descubre artículos que marcan un antes y un después en la ciencia global." %}
   </p>
 </section>
 
 <hr class="hero-divider">
 
 <section class="tracks-intro">
-  <h2>Descubre los temas principales</h2>
+  <h2>{% trans "Descubre los temas principales" %}</h2>
   <p>
-    En esta sección, exploramos los tracks temáticos que definen NexusEXPO. Cada track representa un área clave de la ciencia y la innovación, agrupando artículos y discusiones que ofrecen insights profundos, fomentan el debate y abren oportunidades de colaboración global. Desde avances tecnológicos hasta desafíos éticos, estos temas principales guían el futuro de la investigación. A continuación, te presentamos una selección de tracks destacados con sus artículos más relevantes.
+    {% trans "En esta sección, exploramos los tracks temáticos que definen NexusEXPO. Cada track representa un área clave de la ciencia y la innovación, agrupando artículos y discusiones que ofrecen insights profundos, fomentan el debate y abren oportunidades de colaboración global. Desde avances tecnológicos hasta desafíos éticos, estos temas principales guían el futuro de la investigación. A continuación, te presentamos una selección de tracks destacados con sus artículos más relevantes." %}
   </p>
 </section>
 
@@ -31,7 +28,7 @@
 
         {% if item.articulo_destacado %}
             <div class="articulo-destacado">
-                <h3>Artículo destacado:</h3>
+                <h3>{% trans "Artículo destacado:" %}</h3>
                 <h4>
                     <a href="{% url 'show_articulo' item.articulo_destacado.id %}">
                         {{ item.articulo_destacado.titulo }}
@@ -40,11 +37,11 @@
                 <p>{{ item.articulo_destacado.abstract|truncatewords:30 }}</p>
             </div>
         {% else %}
-            <p><em>No hay artículos en este track.</em></p>
+            <p><em>{% trans "No hay artículos en este track." %}</em></p>
         {% endif %}
     </div>
     <hr class="track-divider">
 {% empty %}
-    <p>No hay temas disponibles.</p>
+    <p>{% trans "No hay temas disponibles." %}</p>
 {% endfor %}
 {% endblock %}

@@ -1,15 +1,16 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% block title %}{{ articulo.titulo }}{% endblock %}
 
 {% block content %}
 <h2>{{ articulo.titulo }}</h2>
 
-<p>Resumen:{{ articulo.abstract }}</p>
-<p>Track:
+<p>{% trans "Resumen:" %}{{ articulo.abstract }}</p>
+<p>{% trans "Track:" %}
     <a href="{% url 'show_track' articulo.track.id %}">{{ articulo.track.nombre }}</a>
 </p>
 
-<h3>Autores:</h3>
+<h3>{% trans "Autores:" %}</h3>
 {% if articulo.autores.all %}
     <ul>
         {% for autor in articulo.autores.all %}
@@ -20,6 +21,6 @@
         {% endfor %}
     </ul>
 {% else %}
-    <p>No hay autores asociados.</p>
+    <p>{% trans "No hay autores asociados." %}</p>
 {% endif %}
 {% endblock %}

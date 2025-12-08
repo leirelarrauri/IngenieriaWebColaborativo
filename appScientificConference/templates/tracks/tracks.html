@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
-{% block title %}Lista de tracks{% endblock %}
+{% load i18n %}
+{% block title %}{% trans "Lista de tracks" %}{% endblock %}
 
 {% block content %}
-<h2>Temas principales (Tracks)</h2>
+<h2>{% trans "Temas principales (Tracks)" %}</h2>
 
 {% if tracks %}
     <ul>
@@ -14,6 +15,6 @@
         {% endfor %}
     </ul>
 {% else %}
-    <p>No hay temas principales registrados.</p>
+    <p>{% trans "No hay temas principales registrados." %}</p>
 {% endif %}
 {% endblock %}

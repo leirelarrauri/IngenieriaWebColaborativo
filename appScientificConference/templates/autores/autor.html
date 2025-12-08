@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static i18n %}
 {% block title %}{{ autor.nombre }}{% endblock %}
 
 {% block content %}
 <h2>{{ autor.nombre }}</h2>
 {% if autor.afiliacion %}
-    <p>Afiliación:{{ autor.afiliacion }}</p>
+    <p>{% trans "Afiliación:" %}{{ autor.afiliacion }}</p>
 {% endif %}
     <img src="{% static 'img/' %}{{ autor.nombre|slugify }}.jpg" alt="{{ autor.nombre }}" style="max-width: 200px; height: auto;" />
-<h3>Artículos de este autor:</h3>
+<h3>{% trans "Artículos de este autor:" %}</h3>
 {% if articulos %}
     <ul>
         {% for articulo in articulos %}
@@ -18,6 +18,6 @@
         {% endfor %}
     </ul>
 {% else %}
-    <p>Este autor no tiene artículos asociados.</p>
+    <p>{% trans "Este autor no tiene artículos asociados." %}</p>
 {% endif %}
 {% endblock %}

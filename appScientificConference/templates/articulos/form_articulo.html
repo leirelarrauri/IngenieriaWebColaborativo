@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static i18n %}
 
-{% block title %}{% if form.instance.pk %}Editar{% else %}Crear{% endif %} Artículo{% endblock %}
+{% block title %}{% if form.instance.pk %}{% trans "Editar" %}{% else %}{% trans "Crear" %}{% endif %} {% trans "Artículo" %}{% endblock %}
 
 
 
 {% block content %}
 <div class="contenedor-formulario">
-    <h1>{% if form.instance.pk %} Editar Artículo{% else %} Crear Nuevo Artículo{% endif %}</h1>
+    <h1>{% if form.instance.pk %} {% trans "Editar Artículo" %}{% else %} {% trans "Crear Nuevo Artículo" %}{% endif %}</h1>
     
-    <p class="texto-obligatorio">Los campos marcados con <span class="asterisco">*</span> son obligatorios</p>
+    <p class="texto-obligatorio">{% trans "Los campos marcados con" %} <span class="asterisco">*</span> {% trans "son obligatorios" %}</p>
     
     <form method="post" id="formulario-articulo" class="formulario-articulo">
         {% csrf_token %}
@@ -57,23 +57,23 @@
             
             <!-- Barra de herramientas para XHTML -->
             <div class="barra-herramientas">
-                <button type="button" class="boton-herramienta" data-tag="p" title="Insertar párrafo">
-                    <span class="icono-herramienta">¶</span> Párrafo
+                <button type="button" class="boton-herramienta" data-tag="p" title="{% trans 'Insertar párrafo' %}">
+                    <span class="icono-herramienta">¶</span> {% trans "Párrafo" %}
                 </button>
-                <button type="button" class="boton-herramienta" data-tag="br" title="Insertar salto de línea">
-                    <span class="icono-herramienta">↵</span> Salto
+                <button type="button" class="boton-herramienta" data-tag="br" title="{% trans 'Insertar salto de línea' %}">
+                    <span class="icono-herramienta">↵</span> {% trans "Salto" %}
                 </button>
-                <button type="button" class="boton-herramienta" data-tag="b" title="Texto en negrita">
-                    <span class="icono-herramienta">B</span> Negrita
+                <button type="button" class="boton-herramienta" data-tag="b" title="{% trans 'Texto en negrita' %}">
+                    <span class="icono-herramienta">B</span> {% trans "Negrita" %}
                 </button>
-                <button type="button" class="boton-herramienta" data-tag="i" title="Texto en cursiva">
-                    <span class="icono-herramienta">I</span> Cursiva
+                <button type="button" class="boton-herramienta" data-tag="i" title="{% trans 'Texto en cursiva' %}">
+                    <span class="icono-herramienta">I</span> {% trans "Cursiva" %}
                 </button>
-                <button type="button" class="boton-herramienta" data-tag="strong" title="Texto importante">
-                    <span class="icono-herramienta">S</span> Importante
+                <button type="button" class="boton-herramienta" data-tag="strong" title="{% trans 'Texto importante' %}">
+                    <span class="icono-herramienta">S</span> {% trans "Importante" %}
                 </button>
-                <button type="button" class="boton-herramienta" data-tag="em" title="Texto enfatizado">
-                    <span class="icono-herramienta">E</span> Énfasis
+                <button type="button" class="boton-herramienta" data-tag="em" title="{% trans 'Texto enfatizado' %}">
+                    <span class="icono-herramienta">E</span> {% trans "Énfasis" %}
                 </button>
             </div>
             
@@ -114,7 +114,7 @@
             </div>
             {% endif %}
             <div id="error-autores" class="mensaje-error-js"></div>
-            <p class="texto-ayuda">Mantén presionada la tecla Ctrl (Cmd en Mac) para seleccionar múltiples autores</p>
+            <p class="texto-ayuda">{% trans "Mantén presionada la tecla Ctrl (Cmd en Mac) para seleccionar múltiples autores" %}</p>
         </div>
         
         <!-- Campo Términos y Condiciones -->
@@ -122,8 +122,7 @@
             <div class="contenedor-checkbox">
                 {{ form.terminos }}
                 <label for="id_terminos" class="etiqueta-terminos">
-                    Acepto que este artículo es original, no ha sido publicado anteriormente 
-                    y que todos los autores han dado su consentimiento para la publicación.*
+                    {% trans "Acepto que este artículo es original, no ha sido publicado anteriormente y que todos los autores han dado su consentimiento para la publicación.*" %}
                 </label>
             </div>
             {% if form.terminos.errors %}
@@ -138,23 +137,23 @@
         
         <!-- Contenedor de Vista Previa -->
         <div id="contenedor-preview" class="contenedor-preview">
-            <h3 class="titulo-preview">Vista Previa del Abstract:</h3>
+            <h3 class="titulo-preview">{% trans "Vista Previa del Abstract:" %}</h3>
             <div id="contenido-preview" class="contenido-preview"></div>
         </div>
         
         <!-- Botones de Acción -->
         <div class="contenedor-botones">
             <button type="submit" class="boton boton-enviar" id="boton-enviar">
-                {% if form.instance.pk %} Actualizar Artículo{% else %} Guardar Artículo{% endif %}
+                {% if form.instance.pk %} {% trans "Actualizar Artículo" %}{% else %} {% trans "Guardar Artículo" %}{% endif %}
             </button>
             <button type="button" class="boton boton-validar" id="boton-validar">
-                 Validar Formulario
+                 {% trans "Validar Formulario" %}
             </button>
             <button type="button" class="boton boton-preview" id="boton-preview">
-                 Vista Previa
+                 {% trans "Vista Previa" %}
             </button>
             <a href="{% url 'lista_articulos' %}" class="boton boton-cancelar">
-                 Cancelar
+                 {% trans "Cancelar" %}
             </a>
         </div>
     </form>

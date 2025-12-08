@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% block title %}{{ track.nombre }}{% endblock %}
 
 {% block content %}
 <h2>{{ track.nombre }}</h2>
 <p>{{ track.descripcion }}</p>
 
-<h3>Artículos en este track:</h3>
+<h3>{% trans "Artículos en este track:" %}</h3>
 {% if articulos %}
     <ul>
         {% for articulo in articulos %}
@@ -16,6 +17,6 @@
         {% endfor %}
     </ul>
 {% else %}
-    <p>No hay artículos en este tema.</p>
+    <p>{% trans "No hay artículos en este tema." %}</p>
 {% endif %}
 {% endblock %}

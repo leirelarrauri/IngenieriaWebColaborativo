@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static i18n %}
 
-{% block title %}Lista de artículos{% endblock %}
+{% block title %}{% trans "Lista de artículos" %}{% endblock %}
 
 {% block content %}
 <div class="contenedor-lista">
-    <h1 class="titulo-lista">Lista de artículos</h1>
+    <h1 class="titulo-lista">{% trans "Lista de artículos" %}</h1>
     
     <div class="contenedor-botones-principal">
         <a href="{% url 'crear_articulo' %}" class="boton-principal">
-            ＋ Crear Nuevo Artículo
+            {% trans "＋ Crear Nuevo Artículo" %}
         </a>
     </div>
     
@@ -24,7 +24,7 @@
                         </a>
                     </h2>
                     <a href="{% url 'editar_articulo' articulo.id %}" class="boton-editar-cabecera">
-                        ✏️ Editar
+                        ✏️ {% trans "Editar" %}
                     </a>
                 </div>
                 
@@ -33,13 +33,13 @@
                     
                     <div class="informacion-articulo">
                         <p class="info-linea">
-                            <span class="etiqueta-info">Track:</span>
+                            <span class="etiqueta-info">{% trans "Track:" %}</span>
                             <a href="{% url 'show_track' articulo.track.id %}" class="enlace-info">
                                 {{ articulo.track.nombre }}
                             </a>
                         </p>
                         <p class="info-linea">
-                            <span class="etiqueta-info">Autores:</span>
+                            <span class="etiqueta-info">{% trans "Autores:" %}</span>
                             {% for autor in articulo.autores.all %}
                                 <a href="{% url 'show_autor' autor.id %}" class="enlace-info">
                                     {{ autor.nombre }}
@@ -50,8 +50,8 @@
                 </div>
                 
                 <div class="pie-tarjeta">
-                    <a href="{% url 'editar_articulo' articulo.id %}" class="boton-accion boton-editar">Editar</a>
-                    <a href="{% url 'show_articulo' articulo.id %}" class="boton-accion boton-detalles">Ver Detalles</a>
+                    <a href="{% url 'editar_articulo' articulo.id %}" class="boton-accion boton-editar">{% trans "Editar" %}</a>
+                    <a href="{% url 'show_articulo' articulo.id %}" class="boton-accion boton-detalles">{% trans "Ver Detalles" %}</a>
                 </div>
             </div>
             {% endfor %}
@@ -59,10 +59,10 @@
     {% else %}
         <div class="contenedor-vacio">
             <div class="mensaje-vacio">
-                <h3 class="titulo-vacio">No hay artículos registrados</h3>
-                <p class="texto-vacio">¡Sé el primero en crear un artículo!</p>
+                <h3 class="titulo-vacio">{% trans "No hay artículos registrados" %}</h3>
+                <p class="texto-vacio">{% trans "¡Sé el primero en crear un artículo!" %}</p>
                 <a href="{% url 'crear_articulo' %}" class="boton-principal boton-grande">
-                    ＋ Crear el Primer Artículo
+                    {% trans "＋ Crear el Primer Artículo" %}
                 </a>
             </div>
         </div>
@@ -70,7 +70,7 @@
     
     <div class="contenedor-botones-principal contenedor-botones-inferior">
         <a href="{% url 'crear_articulo' %}" class="boton-principal">
-            ＋ Crear Nuevo Artículo
+            {% trans "＋ Crear Nuevo Artículo" %}
         </a>
     </div>
 </div>
