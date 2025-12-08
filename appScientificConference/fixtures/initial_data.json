@@ -38,7 +38,7 @@
       "titulo": "Transformers Cuánticos",
       "abstract": "Exploración de arquitecturas híbridas para cómputo cuántico asistido por aprendizaje profundo.",
       "track": 1,
-      "autor": 1
+      "autores": [1]
     }
   },
   {
@@ -48,7 +48,7 @@
       "titulo": "Proteínas diseñadas con IA",
       "abstract": "Uso de modelos generativos para descubrir nuevas estructuras proteicas funcionales.",
       "track": 2,
-      "autor": 2
+      "autores": [1, 2]
     }
   }
 ]
