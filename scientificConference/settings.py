@@ -132,3 +132,25 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Configuración para producción
+import dj_database_url
+import os
+
+DEBUG = os.getenv('DEBUG', 'False') == 'True'  # Cambia DEBUG a False en producción
+SECRET_KEY = os.getenv('SECRET_KEY', 'oxKq77dc87or4zc0D7JIkWBW2RCH9nCzD8GOlGrnosI')  # Usa variable de entorno
+
+ALLOWED_HOSTS = ['*']  # En producción, cambia a tu dominio específico, ej. ['tu-app.onrender.com']
+
+# Base de datos: usa PostgreSQL en producción
+DATABASES = {
+    'default': dj_database_url.config(default='sqlite:///db.sqlite3')  # Fallback a SQLite si no hay DATABASE_URL
+}
+
+# Archivos estáticos
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Directorio para collectstatic
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'appScientificConference', 'static')]  # Si tienes static en la app
+
+# Middleware para static files (whitenoise)
+MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
