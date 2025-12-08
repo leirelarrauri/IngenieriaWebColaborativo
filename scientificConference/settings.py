@@ -115,12 +115,18 @@ TIME_ZONE = 'UTC'
 
 USE_TZ = True
 
+#Headers y títulos personalizados del admin
+
+ADMIN_SITE_HEADER = "Gestión de Artículos"
+ADMIN_SITE_TITLE = "Panel de Conferencias"
+ADMIN_INDEX_TITLE = "Administración del Sistema"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
 #STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
