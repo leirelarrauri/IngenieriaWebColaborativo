@@ -100,8 +100,17 @@ main a:hover {
   height: 2px;
   background: #fff;
   opacity: 0.9;
-  width: min(960px, 92%);
-  margin: 80px auto 32px; /* increased space above the divider */
+  width: 75vw;  /* extender a toda la anchura de la pantalla (era min(960px, 92%)) */
+  margin: 100px auto 50px; /* increased space above the divider */
+}
+
+.track-divider {
+  border: 0;
+  height: 1px;
+  background: #fff;
+  opacity: 0.7;
+  width: 75vw;  /* extender a toda la anchura de la pantalla (era min(960px, 92%)) */
+  margin: 20px auto 20px; /* increased space above the divider */
 }
 
 /* Hero without panel look, centered and constrained */
@@ -118,17 +127,20 @@ main a:hover {
 
 /* Bigger, white hero title and readable paragraph */
 .hero-title {
-  margin: 0 0 10px 0;
-  font-size: clamp(2.4rem, 6.5vw, 3.5rem);
+  margin: 0 0 50px 0;  /* aumentar separación inferior (era 10px) */
+  font-size: clamp(3rem, 7.5vw, 4rem);
   line-height: 1.15;
   color: #fff;
+  font-weight: 800;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
 .hero-text {
-  margin: 0.5rem auto 0;
+  margin: 0.5rem auto 0;  /* mantener */
   max-width: 70ch;
-  font-size: clamp(1.05rem, 2.4vw, 1.2rem);
+  font-size: clamp(1.2rem, 2.8vw, 1.4rem);
   color: rgba(255,255,255,0.92);
+  font-weight: 500;
 }
 
 /* Simple link buttons for index actions (inside panels) */
@@ -219,3 +231,251 @@ footer {
 /* (Optional) remove old nav list styling conflicts */
 nav ul { list-style: none; padding: 0; margin: 0; }
 nav li { display: inline-block; margin: 0 10px; }
+/* HEADER: título centrado arriba, nav debajo + selector a la derecha */
+.site-header {
+  background: transparent;
+  color: #fff;
+  padding: 24px 0 8px;
+  border: 0;
+  box-shadow: none;
+  margin-bottom: 100px;
+}
+
+/* Branding en columna: título arriba, nav+selector debajo */
+.site-header .branding {
+  margin: 0 auto;
+}
+
+/* Título y subtítulo centrados */
+.site-header .titles {
+  text-align: center;
+}
+
+.site-header h1 {
+  margin: 0 0 6px 0;
+  font-size: clamp(4rem, 12vw, 4rem);
+  line-height: 1.1;
+  color: #fff;
+}
+
+.site-header h2 {
+  margin: 0 0 14px 0;
+  font-size: clamp(1.3rem, 4vw, 2rem);
+  font-weight: 500;
+  color: rgba(255,255,255,0.92);
+}
+
+/* Fila con nav a la izquierda y selector a la derecha */
+/* ...existing code... */
+
+/* Fila con nav centrada y selector a la derecha */
+.nav-and-lang {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* centra la nav */
+  position: relative;
+  margin-top: 65px;
+  padding: 10px 0; /* espacio para las líneas */
+  width: 75vw;  /* igual ancho que .hero-divider */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Líneas arriba y abajo de la nav */
+.nav-and-lang::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;  /* ocupar todo el ancho del contenedor */
+  right: 0;
+  height: 2px;
+  background: #fff;
+  opacity: 0.9;
+}
+
+.nav-and-lang::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;  /* ocupar todo el ancho del contenedor */
+  right: 0;
+  height: 2px;
+  background: #fff;
+  opacity: 0.9;
+}
+
+/* Nav centrada, sin chips */
+.main-nav {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  font-size: 0;
+  position: relative; /* para que las líneas no se solapen */
+  z-index: 1;
+}
+
+.main-nav a {
+  font-size: 1.1rem;
+  display: inline-block;
+  padding: 8px 12px;
+  background: transparent; /* quitar fondo */
+  color: #fff; /* blanco */
+  border: none; /* quitar borde */
+  border-radius: 0; /* quitar redondeo */
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: none; /* quitar sombra */
+  transition: transform 0.2s ease; /* animación suave para el hover */
+}
+
+.main-nav a:hover {
+  text-decoration: none; /* quitar subrayado */
+  color: #fff; /* mantener blanco */
+  transform: scale(1.2); /* aumentar tamaño un 10% */
+}
+
+/* Selector de idioma cuadrado, posicionado a la derecha */
+#language-switcher {
+  position: absolute;
+  right: 0;
+  display: flex;
+  align-items: center;
+}
+
+#language-switcher select {
+  padding: 0.3rem 0.6rem;
+  border-radius: 0;          /* cuadrado */
+  border: none;              /* quitar borde para que no sea un "cuadrado" */
+  background: transparent;   /* transparente */
+  color: #ffffff;            /* texto blanco */
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: transform 0.2s ease; /* animación suave para el hover */
+}
+
+#language-switcher select:hover {
+  background: transparent;   /* mantener transparente */
+  color: #ffffff;            /* mantener blanco */
+  transform: scale(1.1);     /* aumentar tamaño un 10% */
+}
+
+/* Responsive: apila nav y selector en pantallas pequeñas */
+@media (max-width: 640px) {
+  .nav-and-lang {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  #language-switcher {
+    position: static;
+    margin-left: 0;
+  }
+}
+
+/* ...existing code... */
+
+main .track {
+  margin: 20px auto;
+  width: 75vw;  /* anchura 80% del viewport */
+  padding: 30px;
+  background: rgba(255,255,255,0.05);  /* fondo tenue */
+  border: 1px solid rgba(255,255,255,0.1);  /* borde sutil */
+  border-radius: 12px;  /* redondeo suave */
+  text-align: center;  /* centrado */
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);  /* sombra sutil */
+}
+
+main .track h2 {
+  margin: 0 0 15px 0;
+  font-size: clamp(1.4rem, 3vw, 2rem);  /* reducido de clamp(1.8rem, 4vw, 2.5rem) */
+  color: #fff;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+main .track p {
+  margin: 0 0 20px 0;
+  font-size: 1rem;  /* reducido de 1.1rem */
+  color: rgba(255,255,255,0.8);
+  line-height: 1.6;
+  max-width: 60ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+main .track .articulo-destacado {
+  margin-top: 25px;
+  padding: 20px;
+  background: rgba(255,255,255,0.08);  /* fondo ligeramente más opaco */
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 8px;
+  text-align: left;  /* texto a la izquierda para el artículo */
+}
+
+main .track .articulo-destacado h3 {
+  margin: 0 0 10px 0;
+  font-size: 1.1rem;  /* reducido de 1.3rem */
+  color: #64ffda;
+  font-weight: 600;
+}
+
+main .track .articulo-destacado h4 {
+  margin: 0 0 10px 0;
+  font-size: 1rem;  /* reducido de 1.2rem */
+  color: #fff;
+  font-weight: 500;
+}
+
+
+main .track .articulo-destacado h4 a {
+  color: #64ffda;  /* enlace en color acento */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+main .track .articulo-destacado h4 a:hover {
+  color: #fff;  /* hover blanco */
+  text-decoration: underline;
+}
+
+main .track .articulo-destacado p {
+  margin: 0;
+  font-size: 0.9rem;  /* reducido de 1rem */
+  color: rgba(255,255,255,0.7);
+  line-height: 1.5;
+}
+
+main .track em {
+  color: rgba(255,255,255,0.6);
+  font-style: italic;
+}
+
+.tracks-intro {
+  background: transparent;  /* igual que .hero */
+  border: 0;  /* igual que .hero */
+  box-shadow: none;  /* igual que .hero */
+  padding: 0;  /* igual que .hero */
+  max-width: min(960px, 92%);  /* igual que .hero */
+  margin: 0 auto 24px;  /* igual que .hero */
+  text-align: center;  /* igual que .hero */
+  color: #fff;  /* igual que .hero */
+}
+
+.tracks-intro h2 {
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  color: #fff;
+  margin-bottom: 15px;
+  font-weight: 700;
+  text-align: left
+}
+
+.tracks-intro p {
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.8);
+  line-height: 1.6;
+  max-width: 70vw;
+  margin: 0 auto;
+  text-align: left
+}

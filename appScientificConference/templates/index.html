@@ -4,7 +4,6 @@
 {% block title %}Inicio - Scientific Conference{% endblock %}
 
 {% block content %}
-<hr class="hero-divider">
 
 <section class="hero">
   <h1 class="hero-title">Bienvenido a la conferencia científica del siglo.</h1>
@@ -13,6 +12,15 @@
     descubrimientos, debatir ideas transformadoras y construir colaboraciones que definan el futuro.
     Explora tracks temáticos, conoce a los autores y descubre artículos que marcan un antes y un después
     en la ciencia global.
+  </p>
+</section>
+
+<hr class="hero-divider">
+
+<section class="tracks-intro">
+  <h2>Descubre los temas principales</h2>
+  <p>
+    En esta sección, exploramos los tracks temáticos que definen NexusEXPO. Cada track representa un área clave de la ciencia y la innovación, agrupando artículos y discusiones que ofrecen insights profundos, fomentan el debate y abren oportunidades de colaboración global. Desde avances tecnológicos hasta desafíos éticos, estos temas principales guían el futuro de la investigación. A continuación, te presentamos una selección de tracks destacados con sus artículos más relevantes.
   </p>
 </section>
 
@@ -35,7 +43,7 @@
             <p><em>No hay artículos en este track.</em></p>
         {% endif %}
     </div>
-    <hr>
+    <hr class="track-divider">
 {% empty %}
     <p>No hay temas disponibles.</p>
 {% endfor %}

@@ -1,6 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from .models import Articulo, Autor, Track
+from django.utils.translation import gettext_lazy as _
 import re
 
 class ArticuloForm(ModelForm):
@@ -53,10 +54,10 @@ class ArticuloForm(ModelForm):
             })
         }
         labels = {
-            'titulo': 'Título*',
-            'abstract': 'Abstract*',
-            'track': 'Track*',
-            'autores': 'Autores*'
+            'titulo': _('Título*'),
+            'abstract': _('Abstract*'),
+            'track': _('Track*'),
+            'autores': _('Autores*'),
         }
     
     def __init__(self, *args, **kwargs):

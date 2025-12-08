@@ -1,10 +1,9 @@
-{% load static %}
+{% load static i18n i18n_helpers %}
 <!DOCTYPE html>
-<html lang="es">
-
+<html lang="{{ LANGUAGE_CODE }}">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Scientific Conference{% endblock %}</title>
+    <title>{% block title %}{% trans "Scientific Conference" %}{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/formulario.css' %}">
     <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
@@ -12,14 +11,41 @@
 </head>
 <body>
     <header class="site-header">
-        <h1>NexusEXPO</h1>
-        <h2>The scientific global convention of the century</h2>
-        <nav class="main-nav">
-            <a href="{% url 'index' %}">Inicio</a>
-            <a href="{% url 'lista_tracks' %}">Tracks</a>
-            <a href="{% url 'lista_autores' %}">Autores</a>
-            <a href="{% url 'lista_articulos' %}">Artículos</a>
-        </nav>
+        <div class="branding">
+            <div class="titles">
+                <h1>{% trans "NexusEXPO" %}</h1>
+                <h2>{% trans "The scientific global convention of the century" %}</h2>
+            </div>
+
+            <div class="nav-and-lang">
+                <nav class="main-nav">
+                    <a href="{% url 'index' %}">{% trans "Inicio" %}</a>
+                    <a href="{% url 'lista_tracks' %}">{% trans "Tracks" %}</a>
+                    <a href="{% url 'lista_autores' %}">{% trans "Autores" %}</a>
+                    <a href="{% url 'lista_articulos' %}">{% trans "Artículos" %}</a>
+                </nav>
+
+                {% get_current_language as CURRENT_LANGUAGE %}
+                <form id="language-switcher" action="{% url 'set_language' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" id="language-next"
+                           value="{% current_path_in_language CURRENT_LANGUAGE %}">
+                    <select name="language" id="language-select"
+                            onchange="document.getElementById('language-next').value=this.options[this.selectedIndex].dataset.next; this.form.submit();">
+                        <option value="es"
+                                data-next="{% current_path_in_language 'es' %}"
+                                {% if CURRENT_LANGUAGE == 'es' %}selected{% endif %}>
+                            {% trans "Español" %}
+                        </option>
+                        <option value="en"
+                                data-next="{% current_path_in_language 'en' %}"
+                                {% if CURRENT_LANGUAGE == 'en' %}selected{% endif %}>
+                            {% trans "English" %}
+                        </option>
+                    </select>
+                </form>
+            </div>
+        </div>
     </header>
 
     <main>
@@ -27,7 +53,7 @@
     </main>
 
     <footer>
-        <p>&copy; 2025 Scientific Conference</p>
+        <p>&copy; 2025 {% trans "Scientific Conference" %}</p>
     </footer>
 </body>
 </html>
