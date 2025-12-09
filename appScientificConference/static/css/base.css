@@ -479,3 +479,71 @@ main .track em {
   margin: 0 auto;
   text-align: left
 }
+.site-footer {
+    background-color: rgba(0, 0, 0, 0.6); /* Fondo más oscuro y opaco */
+    color: white; /* Letras blancas */
+    padding: 20px 0;
+    margin-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.3); /* Borde sutil para definición */
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 200px;
+    margin: 10px;
+}
+
+.footer-section h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: white; /* Asegurar que los títulos sean blancos */
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 5px;
+}
+
+.footer-section ul li a {
+    color: white; /* Enlaces blancos */
+    text-decoration: none;
+}
+
+.footer-section ul li a:hover {
+    text-decoration: underline;
+}
+
+.social-links a {
+    display: block;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: white; /* Enlaces sociales blancos */
+}
+
+.social-links a i {
+    margin-right: 8px;
+}
+
+.social-links a:hover {
+    opacity: 0.8;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 10px 0;
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo más opaco para el bottom */
+    color: white;
+}

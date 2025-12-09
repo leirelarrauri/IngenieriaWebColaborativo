@@ -4,94 +4,99 @@ from .models import Articulo, Autor, Track
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from .forms import ArticuloForm
+from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView
+from django.urls import reverse_lazy
 
 
 #Devuelve la pagina principal
-def index(request):
-    tracks = Track.objects.all()
-    tracks_con_articulo = []
+class IndexView(TemplateView):
+    template_name = 'index.html'
 
-    for track in tracks:
-        # Obtiene el primer artículo 
-        articulo_destacado = track.articulos.all().order_by('titulo').first()
-        tracks_con_articulo.append({
-            'track': track,
-            'articulo_destacado': articulo_destacado
-        })
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        tracks = Track.objects.all()
+        tracks_con_articulo = []
 
-    return render(request, 'index.html', {
-        'tracks_con_articulo': tracks_con_articulo
-    })
+        for track in tracks:
+            # Obtiene el primer artículo 
+            articulo_destacado = track.articulos.all().order_by('titulo').first()
+            tracks_con_articulo.append({
+                'track': track,
+                'articulo_destacado': articulo_destacado
+            })
+
+        context['tracks_con_articulo'] = tracks_con_articulo
+        return context
 
 # Devuelve el listado de tracks 
-def lista_tracks(request):
-    tracks = get_list_or_404(Track.objects.order_by('nombre'))
-    return render(request, 'tracks/tracks.html', {
-        'tracks': tracks
-    })
+class ListaTracksView(ListView):
+    model = Track
+    template_name = 'tracks/tracks.html'
+    context_object_name = 'tracks'
+    ordering = ['nombre']
 
 # Devuelve el listado de autores 
-def lista_autores(request):
-    autores = get_list_or_404(Autor.objects.order_by('nombre'))
-    return render(request, 'autores/autores.html', {
-        'autores': autores
-    })
+class ListaAutoresView(ListView):
+    model = Autor
+    template_name = 'autores/autores.html'
+    context_object_name = 'autores'
+    ordering = ['nombre']
 
 # Devuelve el listado de articulos 
-def lista_articulos(request):
-    articulos = get_list_or_404(Articulo.objects.order_by('titulo'))
-    return render(request, 'articulos/articulos.html', {
-        'articulos': articulos
-    })
+class ListaArticulosView(ListView):
+    model = Articulo
+    template_name = 'articulos/articulos.html'
+    context_object_name = 'articulos'
+    ordering = ['titulo']
 
 # Devuelve los detalles de un track 
-def show_track(request, track_id):
-    track = get_object_or_404(Track, id=track_id)
-    articulos = track.articulos.all().order_by('titulo')
-    return render(request, 'tracks/track.html', {
-        'track': track,
-        'articulos': articulos
-    })
+class ShowTrackView(DetailView):
+    model = Track
+    template_name = 'tracks/track.html'
+    context_object_name = 'track'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['articulos'] = self.object.articulos.all().order_by('titulo')
+        return context
+
 # Devuelve los detalles de un autor 
-def show_autor(request, autor_id):
-    autor = get_object_or_404(Autor, pk=autor_id)
-    articulos = autor.articulos.all().order_by('titulo')
-    return render(request, 'autores/autor.html', {
-        'autor': autor,
-        'articulos': articulos
-    })
+class ShowAutorView(DetailView):
+    model = Autor
+    template_name = 'autores/autor.html'
+    context_object_name = 'autor'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['articulos'] = self.object.articulos.all().order_by('titulo')
+        return context
 
 # Devuelve los detalles de un artículo 
-def show_articulo(request, articulo_id):
-    articulo = get_object_or_404(Articulo, pk=articulo_id)  
-    return render(request, 'articulos/articulo.html', {
-        'articulo': articulo,
-        'track': articulo.track,
-        'autores': articulo.autores.all().order_by('nombre')
-    })
+class ShowArticuloView(DetailView):
+    model = Articulo
+    template_name = 'articulos/articulo.html'
+    context_object_name = 'articulo'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['track'] = self.object.track
+        context['autores'] = self.object.autores.all().order_by('nombre')
+        return context
 
 # Vistas para crear y editar artículos(formularios)
-def crear_articulo(request):
-    if request.method == 'POST':
-        form = ArticuloForm(request.POST)
-        if form.is_valid():
-            articulo = form.save()
-            return redirect('show_articulo', articulo_id=articulo.id)
-    else:
-        form = ArticuloForm()
-    
-    return render(request, 'articulos/form_articulo.html', {'form': form})
+class CrearArticuloView(CreateView):
+    model = Articulo
+    form_class = ArticuloForm
+    template_name = 'articulos/form_articulo.html'
 
-def editar_articulo(request, pk):
-    articulo = get_object_or_404(Articulo, pk=pk)
-    
-    if request.method == 'POST':
-        form = ArticuloForm(request.POST, instance=articulo)
-        if form.is_valid():
-            form.save()
-            return redirect('show_articulo', articulo_id=articulo.id)
-    else:
-        form = ArticuloForm(instance=articulo)
-    
-    return render(request, 'articulos/form_articulo.html', {'form': form})  
+    def get_success_url(self):
+        return reverse_lazy('show_articulo', kwargs={'pk': self.object.pk})
+
+class EditarArticuloView(UpdateView):
+    model = Articulo
+    form_class = ArticuloForm
+    template_name = 'articulos/form_articulo.html'
+
+    def get_success_url(self):
+        return reverse_lazy('show_articulo', kwargs={'pk': self.object.pk})  
 

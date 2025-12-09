@@ -6,6 +6,7 @@
     <title>{% block title %}{% trans "Scientific Conference" %}{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/formulario.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
     <script src="{% static 'js/validar.js' %}"></script>
 </head>
@@ -52,8 +53,40 @@
         {% block content %}{% endblock %}
     </main>
 
-    <footer>
-        <p>&copy; 2025 {% trans "Scientific Conference" %}</p>
+     <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>{% trans "Sobre NexusEXPO" %}</h3>
+                <p>{% trans "La convención científica global del siglo. Conectando mentes innovadoras de todo el mundo." %}</p>
+            </div>
+            <div class="footer-section">
+                <h3>{% trans "Enlaces Rápidos" %}</h3>
+                <ul>
+                    <li><a href="{% url 'index' %}">{% trans "Inicio" %}</a></li>
+                    <li><a href="{% url 'lista_tracks' %}">{% trans "Tracks" %}</a></li>
+                    <li><a href="{% url 'lista_autores' %}">{% trans "Autores" %}</a></li>
+                    <li><a href="{% url 'lista_articulos' %}">{% trans "Artículos" %}</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>{% trans "Contacto" %}</h3>
+                <p>{% trans "Email: info@nexusexpo-scientific-conference.com" %}</p>
+                <p>{% trans "Teléfono: +1 (123) 456-7890" %}</p>
+                <p>{% trans "Dirección: Calle de Alcalá 123, Madrid, España" %}</p>
+            </div>
+            <div class="footer-section">
+                <h3>{% trans "Síguenos" %}</h3>
+                <div class="social-links">
+                    <a href="https://twitter.com/nexusexpo-scientific-conference" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i> Twitter</a>
+                    <a href="https://facebook.com/nexusexpo-scientific-conference" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i> Facebook</a>
+                    <a href="https://linkedin.com/company/nexusexpo-scientific-conference" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                    <a href="https://instagram.com/nexusexpo-scientific-conference" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i> Instagram</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 {% trans "NexusEXPO - Scientific Conference" %}. {% trans "Todos los derechos reservados." %}</p>
+        </div>
     </footer>
 </body>
 </html>

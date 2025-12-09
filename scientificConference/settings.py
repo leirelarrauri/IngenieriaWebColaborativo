@@ -154,3 +154,5 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'appScientificConference', 'static')]
 
 # Middleware para static files (whitenoise)
 MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
+
+DEBUG = True
