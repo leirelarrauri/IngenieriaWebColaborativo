@@ -3,164 +3,240 @@
 
 {% block title %}{% if form.instance.pk %}{% trans "Editar" %}{% else %}{% trans "Crear" %}{% endif %} {% trans "Artículo" %}{% endblock %}
 
-
-
 {% block content %}
-<div class="contenedor-formulario">
-    <h1>{% if form.instance.pk %} {% trans "Editar Artículo" %}{% else %} {% trans "Crear Nuevo Artículo" %}{% endif %}</h1>
-    
-    <p class="texto-obligatorio">{% trans "Los campos marcados con" %} <span class="asterisco">*</span> {% trans "son obligatorios" %}</p>
-    
-    <form method="post" id="formulario-articulo" class="formulario-articulo">
-        {% csrf_token %}
-        
-        <!-- Mostrar errores generales del formulario -->
-        {% if form.non_field_errors %}
-        <div class="errores-generales">
-            {% for error in form.non_field_errors %}
-            <p>{{ error }}</p>
-            {% endfor %}
-        </div>
-        {% endif %}
-        
-        <!-- Campo Título -->
-        <div class="grupo-formulario">
-            <label for="id_titulo" class="etiqueta-formulario">{{ form.titulo.label }}</label>
-            {{ form.titulo }}
-            {% if form.titulo.errors %}
-            <div class="mensaje-error">
-                {% for error in form.titulo.errors %}
-                <p>{{ error }}</p>
-                {% endfor %}
-            </div>
+<main>
+    <section class="contenedor-formulario">
+        <h1>
+            {% if form.instance.pk %}
+                {% trans "Editar Artículo" %}
+            {% else %}
+                {% trans "Crear Nuevo Artículo" %}
             {% endif %}
-            <div id="error-titulo" class="mensaje-error-js"></div>
-        </div>
+        </h1>
         
-        <!-- Campo Track -->
-        <div class="grupo-formulario">
-            <label for="id_track" class="etiqueta-formulario">{{ form.track.label }}</label>
-            {{ form.track }}
-            {% if form.track.errors %}
-            <div class="mensaje-error">
-                {% for error in form.track.errors %}
-                <p>{{ error }}</p>
-                {% endfor %}
-            </div>
-            {% endif %}
-            <div id="error-track" class="mensaje-error-js"></div>
-        </div>
+        <p class="texto-obligatorio">
+            {% trans "Los campos marcados con" %} <span class="asterisco">*</span> {% trans "son obligatorios" %}
+        </p>
         
-        <!-- Campo Abstract -->
-        <div class="grupo-formulario">
-            <label for="id_abstract" class="etiqueta-formulario">{{ form.abstract.label }}</label>
+        <form method="post" id="formulario-articulo" class="formulario-articulo">
+            {% csrf_token %}
             
-            <!-- Barra de herramientas para XHTML -->
-            <div class="barra-herramientas">
-                <button type="button" class="boton-herramienta" data-tag="p" title="{% trans 'Insertar párrafo' %}">
-                    <span class="icono-herramienta">¶</span> {% trans "Párrafo" %}
-                </button>
-                <button type="button" class="boton-herramienta" data-tag="br" title="{% trans 'Insertar salto de línea' %}">
-                    <span class="icono-herramienta">↵</span> {% trans "Salto" %}
-                </button>
-                <button type="button" class="boton-herramienta" data-tag="b" title="{% trans 'Texto en negrita' %}">
-                    <span class="icono-herramienta">B</span> {% trans "Negrita" %}
-                </button>
-                <button type="button" class="boton-herramienta" data-tag="i" title="{% trans 'Texto en cursiva' %}">
-                    <span class="icono-herramienta">I</span> {% trans "Cursiva" %}
-                </button>
-                <button type="button" class="boton-herramienta" data-tag="strong" title="{% trans 'Texto importante' %}">
-                    <span class="icono-herramienta">S</span> {% trans "Importante" %}
-                </button>
-                <button type="button" class="boton-herramienta" data-tag="em" title="{% trans 'Texto enfatizado' %}">
-                    <span class="icono-herramienta">E</span> {% trans "Énfasis" %}
-                </button>
+            <!-- Mostrar errores generales del formulario -->
+            {% if form.non_field_errors %}
+                <div class="errores-generales">
+                    {% for error in form.non_field_errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            
+            <!-- Campo Título -->
+            <div class="grupo-formulario">
+                <label for="id_titulo" class="etiqueta-formulario">{{ form.titulo.label }}</label>
+                {{ form.titulo }}
+                {% if form.titulo.errors %}
+                    <div class="mensaje-error">
+                        {% for error in form.titulo.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <div id="error-titulo" class="mensaje-error-js"></div>
             </div>
             
-            {{ form.abstract }}
-            {% if form.abstract.errors %}
-            <div class="mensaje-error">
-                {% for error in form.abstract.errors %}
-                <p>{{ error }}</p>
-                {% endfor %}
+            <!-- Campo Track -->
+            <div class="grupo-formulario">
+                <label for="id_track" class="etiqueta-formulario">{{ form.track.label }}</label>
+                {{ form.track }}
+                {% if form.track.errors %}
+                    <div class="mensaje-error">
+                        {% for error in form.track.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <div id="error-track" class="mensaje-error-js"></div>
             </div>
-            {% endif %}
-            <div id="error-abstract" class="mensaje-error-js"></div>
-        </div>
-        
-        <!-- Campo Confirmar Abstract -->
-        <div class="grupo-formulario">
-            <label for="id_confirmar_abstract" class="etiqueta-formulario">{{ form.confirmar_abstract.label }}</label>
-            {{ form.confirmar_abstract }}
-            {% if form.confirmar_abstract.errors %}
-            <div class="mensaje-error">
-                {% for error in form.confirmar_abstract.errors %}
-                <p>{{ error }}</p>
-                {% endfor %}
+            
+            <!-- Campo Abstract -->
+            <div class="grupo-formulario">
+                <label for="id_abstract" class="etiqueta-formulario">{{ form.abstract.label }}</label>
+                
+                <!-- Barra de herramientas para XHTML -->
+                <div class="barra-herramientas">
+                    <button type="button" class="boton-herramienta" data-tag="p" title="{% trans 'Insertar párrafo' %}">
+                        <span class="icono-herramienta">¶</span> {% trans "Párrafo" %}
+                    </button>
+                    <button type="button" class="boton-herramienta" data-tag="br" title="{% trans 'Insertar salto de línea' %}">
+                        <span class="icono-herramienta">↵</span> {% trans "Salto" %}
+                    </button>
+                    <button type="button" class="boton-herramienta" data-tag="b" title="{% trans 'Texto en negrita' %}">
+                        <span class="icono-herramienta">B</span> {% trans "Negrita" %}
+                    </button>
+                    <button type="button" class="boton-herramienta" data-tag="i" title="{% trans 'Texto en cursiva' %}">
+                        <span class="icono-herramienta">I</span> {% trans "Cursiva" %}
+                    </button>
+                    <button type="button" class="boton-herramienta" data-tag="strong" title="{% trans 'Texto importante' %}">
+                        <span class="icono-herramienta">S</span> {% trans "Importante" %}
+                    </button>
+                    <button type="button" class="boton-herramienta" data-tag="em" title="{% trans 'Texto enfatizado' %}">
+                        <span class="icono-herramienta">E</span> {% trans "Énfasis" %}
+                    </button>
+                </div>
+                
+                {{ form.abstract }}
+                {% if form.abstract.errors %}
+                    <div class="mensaje-error">
+                        {% for error in form.abstract.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <div id="error-abstract" class="mensaje-error-js"></div>
             </div>
-            {% endif %}
-            <div id="error-confirmar-abstract" class="mensaje-error-js"></div>
-        </div>
-        
-        <!-- Campo Autores -->
-        <div class="grupo-formulario">
-            <label for="id_autores" class="etiqueta-formulario">{{ form.autores.label }}</label>
-            {{ form.autores }}
-            {% if form.autores.errors %}
-            <div class="mensaje-error">
-                {% for error in form.autores.errors %}
-                <p>{{ error }}</p>
-                {% endfor %}
+            
+            <!-- Campo Confirmar Abstract -->
+            <div class="grupo-formulario">
+                <label for="id_confirmar_abstract" class="etiqueta-formulario">{{ form.confirmar_abstract.label }}</label>
+                {{ form.confirmar_abstract }}
+                {% if form.confirmar_abstract.errors %}
+                    <div class="mensaje-error">
+                        {% for error in form.confirmar_abstract.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <div id="error-confirmar-abstract" class="mensaje-error-js"></div>
             </div>
-            {% endif %}
-            <div id="error-autores" class="mensaje-error-js"></div>
-            <p class="texto-ayuda">{% trans "Mantén presionada la tecla Ctrl (Cmd en Mac) para seleccionar múltiples autores" %}</p>
-        </div>
-        
-        <!-- Campo Términos y Condiciones -->
-        <div class="grupo-formulario grupo-terminos">
-            <div class="contenedor-checkbox">
-                {{ form.terminos }}
-                <label for="id_terminos" class="etiqueta-terminos">
-                    {% trans "Acepto que este artículo es original, no ha sido publicado anteriormente y que todos los autores han dado su consentimiento para la publicación.*" %}
-                </label>
+            
+            <!-- Campo Autores -->
+            <div class="grupo-formulario">
+                <label for="id_autores" class="etiqueta-formulario">{{ form.autores.label }}</label>
+                {{ form.autores }}
+                {% if form.autores.errors %}
+                    <div class="mensaje-error">
+                        {% for error in form.autores.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <div id="error-autores" class="mensaje-error-js"></div>
+                <p class="texto-ayuda">
+                    {% trans "Mantén presionada la tecla Ctrl (Cmd en Mac) para seleccionar múltiples autores" %}
+                </p>
             </div>
-            {% if form.terminos.errors %}
-            <div class="mensaje-error">
-                {% for error in form.terminos.errors %}
-                <p>{{ error }}</p>
-                {% endfor %}
+            
+            <!-- Campo Términos y Condiciones -->
+            <div class="grupo-formulario grupo-terminos">
+                <div class="contenedor-checkbox">
+                    {{ form.terminos }}
+                    <label for="id_terminos" class="etiqueta-terminos">
+                        {% trans "Acepto que este artículo es original, no ha sido publicado anteriormente y que todos los autores han dado su consentimiento para la publicación.*" %}
+                    </label>
+                </div>
+                {% if form.terminos.errors %}
+                    <div class="mensaje-error">
+                        {% for error in form.terminos.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <div id="error-terminos" class="mensaje-error-js"></div>
             </div>
-            {% endif %}
-            <div id="error-terminos" class="mensaje-error-js"></div>
-        </div>
-        
-        <!-- Contenedor de Vista Previa -->
-        <div id="contenedor-preview" class="contenedor-preview">
-            <h3 class="titulo-preview">{% trans "Vista Previa del Abstract:" %}</h3>
-            <div id="contenido-preview" class="contenido-preview"></div>
-        </div>
-        
-        <!-- Botones de Acción -->
-        <div class="contenedor-botones">
-            <button type="submit" class="boton boton-enviar" id="boton-enviar">
-                {% if form.instance.pk %} {% trans "Actualizar Artículo" %}{% else %} {% trans "Guardar Artículo" %}{% endif %}
-            </button>
-            <button type="button" class="boton boton-validar" id="boton-validar">
-                 {% trans "Validar Formulario" %}
-            </button>
-            <button type="button" class="boton boton-preview" id="boton-preview">
-                 {% trans "Vista Previa" %}
-            </button>
-            <a href="{% url 'lista_articulos' %}" class="boton boton-cancelar">
-                 {% trans "Cancelar" %}
-            </a>
-        </div>
-    </form>
-</div>
+            
+            <!-- Contenedor de Vista Previa -->
+            <div id="contenedor-preview" class="contenedor-preview">
+                <h3 class="titulo-preview">{% trans "Vista Previa del Abstract:" %}</h3>
+                <div id="contenido-preview" class="contenido-preview"></div>
+            </div>
+            
+            <!-- Botones de Acción -->
+            <div class="contenedor-botones">
+                <button type="submit" class="boton boton-enviar" id="boton-enviar">
+                    {% if form.instance.pk %}
+                        {% trans "Actualizar Artículo" %}
+                    {% else %}
+                        {% trans "Guardar Artículo" %}
+                    {% endif %}
+                </button>
+                <button type="button" class="boton boton-validar" id="boton-validar">
+                    {% trans "Validar Formulario" %}
+                </button>
+                <button type="button" class="boton boton-preview" id="boton-preview">
+                    {% trans "Vista Previa" %}
+                </button>
+                <a href="{% url 'lista_articulos' %}" class="boton boton-cancelar">
+                    {% trans "Cancelar" %}
+                </a>
+            </div>
+        </form>
+    </section>
+</main>
 {% endblock %}
 
 {% block extra_js %}
 <script src="{% static 'js/validar.js' %}"></script>
 <script src="{% static 'js/formulario.js' %}"></script>
+<script>
+    // JavaScript para la barra de herramientas XHTML
+    document.addEventListener('DOMContentLoaded', function() {
+        const barraHerramientas = document.querySelector('.barra-herramientas');
+        const textareaAbstract = document.getElementById('id_abstract');
+        
+        if (barraHerramientas && textareaAbstract) {
+            barraHerramientas.addEventListener('click', function(e) {
+                if (e.target.classList.contains('boton-herramienta') || 
+                    e.target.closest('.boton-herramienta')) {
+                    const boton = e.target.classList.contains('boton-herramienta') ? 
+                                 e.target : e.target.closest('.boton-herramienta');
+                    const tag = boton.getAttribute('data-tag');
+                    insertarTag(tag);
+                }
+            });
+            
+            function insertarTag(tag) {
+                const start = textareaAbstract.selectionStart;
+                const end = textareaAbstract.selectionEnd;
+                const texto = textareaAbstract.value;
+                const textoSeleccionado = texto.substring(start, end);
+                
+                let nuevoTexto;
+                if (tag === 'br') {
+                    nuevoTexto = '<br>';
+                    textareaAbstract.value = texto.substring(0, start) + nuevoTexto + texto.substring(end);
+                    textareaAbstract.selectionStart = textareaAbstract.selectionEnd = start + nuevoTexto.length;
+                } else if (tag === 'p') {
+                    nuevoTexto = '<p>' + (textoSeleccionado || '{% trans "Nuevo párrafo" %}') + '</p>';
+                    textareaAbstract.value = texto.substring(0, start) + nuevoTexto + texto.substring(end);
+                    textareaAbstract.selectionStart = start + 3;
+                    textareaAbstract.selectionEnd = start + 3 + (textoSeleccionado.length || 12);
+                } else {
+                    nuevoTexto = '<' + tag + '>' + textoSeleccionado + '</' + tag + '>';
+                    textareaAbstract.value = texto.substring(0, start) + nuevoTexto + texto.substring(end);
+                    if (textoSeleccionado) {
+                        textareaAbstract.selectionStart = start + tag.length + 2;
+                        textareaAbstract.selectionEnd = start + tag.length + 2 + textoSeleccionado.length;
+                    } else {
+                        textareaAbstract.selectionStart = textareaAbstract.selectionEnd = start + tag.length + 2;
+                    }
+                }
+                
+                textareaAbstract.focus();
+            }
+        }
+        
+        // Vista previa del abstract
+        const botonPreview = document.getElementById('boton-preview');
+        const contenedorPreview = document.getElementById('contenedor-preview');
+        const contenidoPreview = document.getElementById('contenido-preview');
+        
+        if (botonPreview && contenedorPreview && contenidoPreview) {
+            botonPreview.addEventListener('click', function() {
+                const abstract = document.getElementById('id_abstract').value;
+                contenidoPreview.innerHTML = abstract || '{% trans "No hay contenido para previsualizar" %}';
+                contenedorPreview.classList.add('mostrar');
+            });
+        }
+    });
+</script>
 {% endblock %}
