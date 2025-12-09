@@ -3,18 +3,45 @@
 {% block title %}{% trans "Lista de tracks" %}{% endblock %}
 
 {% block content %}
-<h2>{% trans "Temas principales (Tracks)" %}</h2>
-
-{% if tracks %}
-    <ul>
-        {% for track in tracks %}
-            <li>
-                <h3><a href="{% url 'show_track' track.id %}">{{ track.nombre }}</a></h3>
-                <p>{{ track.descripcion|truncatewords:25 }}</p>
-            </li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>{% trans "No hay temas principales registrados." %}</p>
-{% endif %}
+<main>
+    <section class="contenedor-lista-tracks">
+        <h2 class="titulo-lista-tracks">
+            {% trans "Temas principales (Tracks)" %}
+            {% if tracks %}
+                <span class="contador-tracks">{{ tracks|length }}</span>
+            {% endif %}
+        </h2>
+        
+        {% if tracks %}
+            <ul class="grid-tracks">
+                {% for track in tracks %}
+                    <li class="tarjeta-track">
+                        <div class="cabecera-track">
+                            <a href="{% url 'show_track' track.id %}" class="enlace-track-titulo">
+                                {{ track.nombre }}
+                            </a>
+                        </div>
+                        
+                        <div class="contenido-track">
+                            <p class="descripcion-track">
+                                {{ track.descripcion|truncatewords:35|linebreaksbr }}
+                            </p>
+                            {% if track.descripcion|wordcount > 35 %}
+                                <span class="indicador-track">{% trans "Más información..." %}</span>
+                            {% endif %}
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <div class="mensaje-vacio-tracks">
+                <h3 class="titulo-vacio-tracks">{% trans "No hay temas principales registrados" %}</h3>
+                <p class="texto-vacio-tracks">
+                    {% trans "Los tracks o temas principales organizan los artículos por áreas temáticas específicas." %}
+                </p>
+            </div>
+        {% endif %}
+        
+    </section>
+</main>
 {% endblock %}

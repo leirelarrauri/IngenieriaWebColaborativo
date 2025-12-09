@@ -228,7 +228,7 @@ footer {
   text-align: center;
 }
 
-/* (Optional) remove old nav list styling conflicts */
+/* Remove old nav list styling conflicts */
 nav ul { list-style: none; padding: 0; margin: 0; }
 nav li { display: inline-block; margin: 0 10px; }
 /* HEADER: título centrado arriba, nav debajo + selector a la derecha */
@@ -266,7 +266,6 @@ nav li { display: inline-block; margin: 0 10px; }
 }
 
 /* Fila con nav a la izquierda y selector a la derecha */
-/* ...existing code... */
 
 /* Fila con nav centrada y selector a la derecha */
 .nav-and-lang {
@@ -372,7 +371,7 @@ nav li { display: inline-block; margin: 0 10px; }
   }
 }
 
-/* ...existing code... */
+
 
 main .track {
   margin: 20px auto;
@@ -479,6 +478,8 @@ main .track em {
   margin: 0 auto;
   text-align: left
 }
+
+/* Footer */
 .site-footer {
     background-color: rgba(0, 0, 0, 0.6); /* Fondo más oscuro y opaco */
     color: white; /* Letras blancas */
@@ -547,3 +548,4 @@ main .track em {
     background-color: rgba(0, 0, 0, 0.8); /* Fondo más opaco para el bottom */
     color: white;
 }
+

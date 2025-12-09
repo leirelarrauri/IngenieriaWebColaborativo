@@ -3,20 +3,68 @@
 {% block title %}{{ track.nombre }}{% endblock %}
 
 {% block content %}
-<h2>{{ track.nombre }}</h2>
-<p>{{ track.descripcion }}</p>
-
-<h3>{% trans "Artículos en este track:" %}</h3>
-{% if articulos %}
-    <ul>
-        {% for articulo in articulos %}
-            <li>
-                <h4><a href="{% url 'show_articulo' articulo.id %}">{{ articulo.titulo }}</a></h4>
-                <p>{{ articulo.abstract|truncatewords:20 }}</p>
-            </li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>{% trans "No hay artículos en este tema." %}</p>
-{% endif %}
+<main>
+    <section class="contenedor-detalle-track">
+        <div class="cabecera-track-detalle">
+            <h2 class="nombre-track-detalle">{{ track.nombre }}</h2>
+            <div class="contenedor-descripcion-track">
+                <div class="descripcion-track-detalle">
+                    {{ track.descripcion|linebreaks }}
+                </div>
+            </div>
+        </div>
+        
+        <div class="seccion-articulos-track">
+            <h3 class="titulo-articulos-track">
+                {% trans "Artículos en este track" %}
+                {% if articulos %}
+                    <span class="contador-articulos-track">{{ articulos|length }}</span>
+                {% endif %}
+            </h3>
+            
+            {% if articulos %}
+                <ul class="lista-articulos-track">
+                    {% for articulo in articulos %}
+                        <li class="item-articulo-track">
+                            <div class="cabecera-articulo-track">
+                                <h4 class="titulo-articulo-track">
+                                    <a href="{% url 'show_articulo' articulo.id %}" class="enlace-articulo-track">
+                                        {{ articulo.titulo }}
+                                    </a>
+                                </h4>
+                            </div>
+                            
+                            <div class="contenido-articulo-track">
+                                <p class="resumen-articulo-track">
+                                    {{ articulo.abstract|truncatewords:30|safe }}
+                                </p>
+                            </div>
+                            
+                            <!-- Información adicional del artículo -->
+                            <div class="info-articulo-track">
+                                <div class="info-item-articulo">
+                                    <span class="etiqueta-info-articulo">{% trans "Autores:" %}</span>
+                                    {% for autor in articulo.autores.all %}
+                                        <a href="{% url 'show_autor' autor.id %}" class="enlace-autor-articulo">
+                                            {{ autor.nombre }}
+                                        </a>{% if not forloop.last %}<span class="separador-autores">, </span>{% endif %}
+                                    {% empty %}
+                                        <span>{% trans "Sin autores" %}</span>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <div class="mensaje-sin-articulos-track">
+                    <h4 class="titulo-sin-articulos-track">{% trans "No hay artículos en este tema" %}</h4>
+                    <p class="texto-sin-articulos-track">
+                        {% trans "Este track aún no contiene artículos publicados." %}
+                    </p>
+                </div>
+            {% endif %}
+        </div>
+    </section>
+</main>
 {% endblock %}

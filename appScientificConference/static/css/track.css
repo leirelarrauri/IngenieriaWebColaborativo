@@ -1,0 +1,441 @@
+/* Lista de tracks - Estilos */
+
+/* Contenedor principal */
+.contenedor-lista-tracks {
+    background: var(--panel-bg);
+    color: var(--text-dark);
+    padding: 30px;
+    border-radius: var(--radius);
+    border: 1px solid var(--panel-border);
+    box-shadow: var(--shadow);
+    margin: 0 auto;
+    max-width: min(1200px, 92%);
+}
+
+/* Título principal */
+.titulo-lista-tracks {
+    margin: 0 0 30px 0;
+    font-size: clamp(1.8rem, 3.5vw, 2.3rem);
+    color: var(--text-dark);
+    font-weight: 700;
+    text-align: left;
+    padding-bottom: 15px;
+    border-bottom: 2px solid rgba(0, 19, 53, 0.1);
+}
+
+/* Contador de tracks */
+.contador-tracks {
+    display: inline-block;
+    background: var(--electric-blue);
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+/* Grid de tracks */
+.grid-tracks {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 25px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+/* Tarjeta de track */
+.tarjeta-track {
+    background: #fff;
+    border: 1px solid var(--panel-border);
+    border-radius: var(--radius);
+    padding: 25px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.tarjeta-track:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    border-color: var(--electric-blue);
+}
+
+/* Encabezado de la tarjeta */
+.cabecera-track {
+    margin-bottom: 15px;
+    flex-shrink: 0;
+}
+
+.enlace-track-titulo {
+    color: var(--electric-blue);
+    text-decoration: none;
+    font-size: 1.3rem;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 10px;
+    transition: color 0.2s ease;
+    line-height: 1.3;
+}
+
+.enlace-track-titulo:hover {
+    color: #002952;
+    text-decoration: underline;
+}
+
+/* Contenido de la tarjeta */
+.contenido-track {
+    flex: 1;
+    margin-bottom: 20px;
+}
+
+.descripcion-track {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+}
+
+/* Indicador de contenido adicional */
+.indicador-track {
+    display: inline-block;
+    background: rgba(0, 19, 53, 0.08);
+    color: var(--electric-blue);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+
+
+/* Mensaje cuando no hay tracks */
+.mensaje-vacio-tracks {
+    text-align: center;
+    padding: 50px 20px;
+    background: rgba(0, 0, 0, 0.02);
+    border-radius: var(--radius);
+    border: 2px dashed var(--panel-border);
+}
+
+.titulo-vacio-tracks {
+    margin: 0 0 15px 0;
+    font-size: 1.5rem;
+    color: #666;
+    font-weight: 600;
+}
+
+.texto-vacio-tracks {
+    margin: 0;
+    font-size: 1.05rem;
+    color: #888;
+    line-height: 1.5;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+/* Responsive */
+@media (max-width: 900px) {
+    .grid-tracks {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .contenedor-lista-tracks {
+        padding: 20px;
+    }
+    
+    .grid-tracks {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .tarjeta-track {
+        padding: 20px;
+    }
+    
+    .estadisticas-track {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .contenedor-lista-tracks {
+        padding: 15px;
+    }
+    
+    .titulo-lista-tracks {
+        font-size: 1.5rem;
+    }
+    
+    .enlace-track-titulo {
+        font-size: 1.2rem;
+    }
+}
+
+/* Detalle de track - Estilos */
+
+/* Contenedor principal */
+.contenedor-detalle-track {
+    background: var(--panel-bg);
+    color: var(--text-dark);
+    padding: 30px;
+    border-radius: var(--radius);
+    border: 1px solid var(--panel-border);
+    box-shadow: var(--shadow);
+    margin: 0 auto;
+    max-width: min(1000px, 92%);
+}
+
+/* Cabecera del track */
+.cabecera-track-detalle {
+    margin-bottom: 30px;
+}
+
+.nombre-track-detalle {
+    margin: 0 0 15px 0;
+    font-size: clamp(1.8rem, 3.5vw, 2.3rem);
+    color: var(--text-dark);
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+/* Contenedor especial para la descripción */
+.contenedor-descripcion-track {
+    padding: 15px;
+    background: rgba(0, 19, 53, 0.05);
+    border-radius: 8px;
+    border-left: 4px solid var(--electric-blue);
+    margin: 0;
+}
+
+.descripcion-track-detalle {
+    margin: 0;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+}
+
+/* Asegurar que los párrafos dentro de la descripción se comporten bien */
+.descripcion-track-detalle p {
+    margin: 0 0 10px 0;
+}
+
+.descripcion-track-detalle p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* Sección de artículos */
+.seccion-articulos-track {
+    margin-top: 30px;
+}
+
+.titulo-articulos-track {
+    margin: 0 0 20px 0;
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    font-weight: 600;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--panel-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.contador-articulos-track {
+    background: var(--electric-blue);
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* Lista de artículos */
+.lista-articulos-track {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.item-articulo-track {
+    margin-bottom: 20px;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid var(--panel-border);
+    border-radius: var(--radius);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.item-articulo-track:hover {
+    transform: translateX(5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border-color: var(--electric-blue);
+}
+
+.cabecera-articulo-track {
+    margin-bottom: 15px;
+}
+
+.titulo-articulo-track {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.enlace-articulo-track {
+    color: var(--electric-blue);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.enlace-articulo-track:hover {
+    color: #002952;
+    text-decoration: underline;
+}
+
+.contenido-articulo-track {
+    margin-bottom: 15px;
+}
+
+.resumen-articulo-track {
+    margin: 0 0 10px 0;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #555;
+}
+
+/* Información del artículo */
+.info-articulo-track {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.info-item-articulo {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.etiqueta-info-articulo {
+    font-weight: 600;
+    color: #666;
+}
+
+.enlace-autor-articulo {
+    color: var(--electric-blue);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.enlace-autor-articulo:hover {
+    text-decoration: underline;
+}
+
+.separador-autores {
+    color: #666;
+}
+
+/* Mensaje cuando no hay artículos */
+.mensaje-sin-articulos-track {
+    padding: 30px;
+    background: rgba(0, 0, 0, 0.02);
+    border-radius: var(--radius);
+    text-align: center;
+    border: 2px dashed var(--panel-border);
+}
+
+.titulo-sin-articulos-track {
+    margin: 0 0 10px 0;
+    font-size: 1.3rem;
+    color: #666;
+    font-weight: 600;
+}
+
+.texto-sin-articulos-track {
+    margin: 0;
+    font-size: 1rem;
+    color: #888;
+    line-height: 1.5;
+}
+
+
+
+/* Responsive */
+@media (max-width: 768px) {
+    .contenedor-detalle-track {
+        padding: 20px;
+    }
+    
+    .estadisticas-track-detalle {
+        gap: 15px;
+        justify-content: center;
+    }
+    
+    .estadistica-track {
+        min-width: 80px;
+    }
+    
+    .numero-estadistica {
+        font-size: 1.5rem;
+    }
+    
+    .item-articulo-track {
+        padding: 15px;
+    }
+    
+    .info-articulo-track {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .contenedor-botones-track {
+        flex-direction: column;
+    }
+    
+    .boton-accion-track {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .contenedor-detalle-track {
+        padding: 15px;
+    }
+    
+    .nombre-track-detalle {
+        font-size: 1.6rem;
+    }
+    
+    .contenedor-descripcion-track {
+        padding: 12px;
+    }
+    
+    .descripcion-track-detalle {
+        font-size: 1rem;
+    }
+    
+    .titulo-articulo-track {
+        font-size: 1.1rem;
+    }
+}

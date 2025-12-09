@@ -3,21 +3,119 @@
 {% block title %}{{ autor.nombre }}{% endblock %}
 
 {% block content %}
-<h2>{{ autor.nombre }}</h2>
-{% if autor.afiliacion %}
-    <p>{% trans "Afiliación:" %}{{ autor.afiliacion }}</p>
-{% endif %}
-    <img src="{% static 'img/' %}{{ autor.nombre|slugify }}.jpg" alt="{{ autor.nombre }}" style="max-width: 200px; height: auto;" />
-<h3>{% trans "Artículos de este autor:" %}</h3>
-{% if articulos %}
-    <ul>
-        {% for articulo in articulos %}
-            <li>
-                <a href="{% url 'show_articulo' articulo.id %}">{{ articulo.titulo }}</a>
-            </li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>{% trans "Este autor no tiene artículos asociados." %}</p>
-{% endif %}
+<main>
+    <section class="contenedor-detalle-autor">
+        <div class="cabecera-autor-detalle">
+            <div class="contenedor-imagen">
+                {% with imagen_url='img/'|add:autor.nombre|slugify|add:'.jpg' %}
+                    {% if imagen_url == 'img/.jpg' %}
+                        <div class="imagen-placeholder-autor">
+                            {% trans "Imagen no disponible" %}
+                        </div>
+                    {% else %}
+                        <img src="{% static imagen_url %}" 
+                             alt="{{ autor.nombre }}" 
+                             class="imagen-autor"
+                             onerror="this.style.display='none'; document.querySelector('.contenedor-imagen .imagen-fallback').style.display='flex';" />
+                        <div class="imagen-fallback">
+                            {% trans "Imagen no encontrada" %}
+                        </div>
+                    {% endif %}
+                {% endwith %}
+            </div>
+            
+            <div class="info-autor-detalle">
+                <h2 class="nombre-autor-detalle">{{ autor.nombre }}</h2>
+                
+                {% if autor.afiliacion %}
+                    <div class="afiliacion-autor-detalle">
+                        <span class="etiqueta-afiliacion">{% trans "Afiliación:" %}</span>
+                        {{ autor.afiliacion }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="seccion-articulos-autor">
+            <h3 class="titulo-articulos-autor">
+                {% trans "Artículos de este autor:" %}
+                {% if articulos %}
+                    <span class="contador-articulos-autor">{{ articulos|length }}</span>
+                {% endif %}
+            </h3>
+            
+            {% if articulos %}
+                <ul class="lista-articulos-autor">
+                    {% for articulo in articulos %}
+                        <li class="item-articulo-autor">
+                            <a href="{% url 'show_articulo' articulo.id %}" class="enlace-articulo-autor">
+                                {{ articulo.titulo }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <div class="mensaje-sin-articulos-autor">
+                    <h4 class="titulo-sin-articulos-autor">{% trans "Este autor no tiene artículos asociados." %}</h4>
+                    <p class="texto-sin-articulos-autor">
+                        {% trans "No se han encontrado artículos publicados por este autor en el sistema." %}
+                    </p>
+                </div>
+            {% endif %}
+        </div>
+        
+    </section>
+</main>
+
+<style>
+    /* Estilo inline para manejo seguro de imágenes */
+    .contenedor-imagen {
+        position: relative;
+    }
+    
+    .contenedor-imagen .imagen-fallback {
+        display: none;
+        width: 100%;
+        max-width: 200px;
+        height: auto;
+        border-radius: 12px;
+        border: 2px dashed rgba(0,0,0,0.12);
+        background: rgba(0, 19, 53, 0.05);
+        aspect-ratio: 1/1;
+        padding: 20px;
+        text-align: center;
+        color: #666;
+        font-style: italic;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+
+<script>
+    // Manejo de imágenes faltantes
+    document.addEventListener('DOMContentLoaded', function() {
+        const imagenes = document.querySelectorAll('.contenedor-imagen img');
+        
+        imagenes.forEach(img => {
+            // Verificar si la imagen no se cargó
+            if (img.complete && img.naturalHeight === 0) {
+                // Imagen rota
+                img.style.display = 'none';
+                const fallback = img.nextElementSibling;
+                if (fallback && fallback.classList.contains('imagen-fallback')) {
+                    fallback.style.display = 'flex';
+                }
+            }
+            
+            // Para imágenes que fallan durante la carga
+            img.addEventListener('error', function() {
+                this.style.display = 'none';
+                const fallback = this.nextElementSibling;
+                if (fallback && fallback.classList.contains('imagen-fallback')) {
+                    fallback.style.display = 'flex';
+                }
+            });
+        });
+    });
+</script>
 {% endblock %}

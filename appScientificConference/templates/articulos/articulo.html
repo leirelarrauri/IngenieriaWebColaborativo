@@ -3,24 +3,46 @@
 {% block title %}{{ articulo.titulo }}{% endblock %}
 
 {% block content %}
-<h2>{{ articulo.titulo }}</h2>
-
-<p>{% trans "Resumen:" %}{{ articulo.abstract }}</p>
-<p>{% trans "Track:" %}
-    <a href="{% url 'show_track' articulo.track.id %}">{{ articulo.track.nombre }}</a>
-</p>
-
-<h3>{% trans "Autores:" %}</h3>
-{% if articulo.autores.all %}
-    <ul>
-        {% for autor in articulo.autores.all %}
-            <li>
-                <a href="{% url 'show_autor' autor.id %}">{{ autor.nombre }}</a>
-                {% if autor.afiliacion %} ({{ autor.afiliacion }}){% endif %}
-            </li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>{% trans "No hay autores asociados." %}</p>
-{% endif %}
+<main>
+    <section class="detalle-articulo">
+        <h2 class="titulo-detalle">{{ articulo.titulo }}</h2>
+        
+        <div class="seccion-resumen">
+            <span class="etiqueta-resumen">{% trans "Resumen:" %}</span>
+            <div class="contenido-resumen">
+                {{ articulo.abstract|linebreaks }}
+            </div>
+        </div>
+        
+        <div class="info-track">
+            <span class="etiqueta-track">{% trans "Track:" %}</span>
+            <a href="{% url 'show_track' articulo.track.id %}" class="enlace-track">
+                {{ articulo.track.nombre }}
+            </a>
+        </div>
+        
+        <div class="seccion-autores">
+            <h3 class="titulo-autores">{% trans "Autores" %}</h3>
+            
+            {% if articulo.autores.all %}
+                <ul class="lista-autores">
+                    {% for autor in articulo.autores.all %}
+                        <li class="item-autor">
+                            <a href="{% url 'show_autor' autor.id %}" class="enlace-autor">
+                                {{ autor.nombre }}
+                            </a>
+                            {% if autor.afiliacion %}
+                                <span class="afiliacion-autor">({{ autor.afiliacion }})</span>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <div class="mensaje-sin-autores">
+                    {% trans "No hay autores asociados." %}
+                </div>
+            {% endif %}
+        </div>
+    </section>
+</main>
 {% endblock %}

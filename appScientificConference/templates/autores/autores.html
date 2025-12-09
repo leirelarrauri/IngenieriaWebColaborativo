@@ -3,18 +3,35 @@
 {% block title %}{% trans "Lista de autores" %}{% endblock %}
 
 {% block content %}
-<h2>{% trans "Autores y autoras" %}</h2>
-
-{% if autores %}
-    <ul>
-        {% for autor in autores %}
-            <li>
-                <a href="{% url 'show_autor' autor.id %}">{{ autor.nombre }}</a>
-                {% if autor.afiliacion %} — {{ autor.afiliacion }}{% endif %}
-            </li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>{% trans "No hay autores registrados." %}</p>
-{% endif %}
+<main>
+    <section class="contenedor-lista-autores">
+        <h2 class="titulo-lista-autores">
+            {% trans "Autores y autoras" %}
+            {% if autores %}
+                <span class="contador-autores">{{ autores|length }}</span>
+            {% endif %}
+        </h2>
+        
+        {% if autores %}
+            <ul class="lista-autores-grid">
+                {% for autor in autores %}
+                    <li class="item-autor-tarjeta">
+                        <a href="{% url 'show_autor' autor.id %}" class="enlace-autor-lista">
+                            {{ autor.nombre }}
+                        </a>
+                        {% if autor.afiliacion %}
+                            <p class="afiliacion-autor-lista">{{ autor.afiliacion }}</p>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+            
+        {% else %}
+            <div class="mensaje-vacio-autores">
+                <h3 class="titulo-vacio-autores">{% trans "No hay autores registrados" %}</h3>
+                <p class="texto-vacio-autores">{% trans "Todavía no se han registrado autores en el sistema." %}</p>
+            </div>
+        {% endif %}
+    </section>
+</main>
 {% endblock %}
