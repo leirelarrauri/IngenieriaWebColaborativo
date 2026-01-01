@@ -7,7 +7,6 @@ from .forms import ArticuloForm
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView
 from django.urls import reverse_lazy
 
-
 #Devuelve la pagina principal
 class IndexView(TemplateView):
     template_name = 'index.html'
